@@ -299,6 +299,32 @@ contract OffchainOracle is Ownable {
     * WARNING!
     *    Usage of the dex oracle on chain is highly discouraged!
     *    getRate function can be easily manipulated inside transaction!
+    * @notice Returns the weighted rates between the several source tokens and the destination token using custom connectors, with the option to filter out rates below a certain threshold.
+    * @param srcTokens The source tokens
+    * @param dstToken The destination token
+    * @param useWrappers Boolean flag to use or not use token wrappers
+    * @param customConnectors An array of custom connectors to use
+    * @param thresholdFilter The threshold percentage (from 0 to 100) used to filter out rates below the threshold
+    * @return weightedRates The weighted rates between the two tokens
+    */
+    function getManyRatesWithCustomConnectors(
+        IERC20[] calldata srcTokens,
+        IERC20 dstToken,
+        bool useWrappers,
+        IERC20[] calldata customConnectors,
+        uint256 thresholdFilter
+    ) external view returns (uint256[] memory weightedRates) {
+        uint256 length = srcTokens.length;
+        weightedRates = new uint256[](length);
+        for (uint256 i = 0; i < length; i++) {
+            weightedRates[i] = getRateWithCustomConnectors(srcTokens[i], dstToken, useWrappers, customConnectors, thresholdFilter);
+        }
+    }
+
+    /**
+    * WARNING!
+    *    Usage of the dex oracle on chain is highly discouraged!
+    *    getRate function can be easily manipulated inside transaction!
     * @notice The same as `getRate` but checks against `ETH` and `WETH` only
     */
     function getRateToEth(IERC20 srcToken, bool useSrcWrappers) external view returns (uint256 weightedRate) {
