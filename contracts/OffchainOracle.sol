@@ -254,14 +254,39 @@ contract OffchainOracle is Ownable {
         IERC20[] memory customConnectors,
         uint256 thresholdFilter
     ) public view returns (uint256 weightedRate) {
+        (IOracle[] memory allOracles,) = oracles();
+        weightedRate = getRateWithCustomConnectorsAndOracles(srcToken, dstToken, useWrappers, customConnectors, allOracles, thresholdFilter);
+    }
+
+    /**
+    * WARNING!
+    *    Usage of the dex oracle on chain is highly discouraged!
+    *    getRate function can be easily manipulated inside transaction!
+    * @notice Returns the weighted rate between two tokens using custom connectors, with the option to filter out rates below a certain threshold.
+    * @param srcToken The source token
+    * @param dstToken The destination token
+    * @param useWrappers Boolean flag to use or not use token wrappers
+    * @param customConnectors An array of custom connectors to use
+    * @param customOracles An array of custom oracles to use
+    * @param thresholdFilter The threshold percentage (from 0 to 100) used to filter out rates below the threshold
+    * @return weightedRate The weighted rate between the two tokens
+    */
+    function getRateWithCustomConnectorsAndOracles
+    (
+        IERC20 srcToken,
+        IERC20 dstToken,
+        bool useWrappers,
+        IERC20[] memory customConnectors,
+        IOracle[] memory customOracles,
+        uint256 thresholdFilter
+    ) public view returns (uint256 weightedRate) {
         if(srcToken == dstToken) revert SameTokens();
         if(thresholdFilter >= 100) revert TooBigThreshold();
-        (IOracle[] memory allOracles, ) = oracles();
         (IERC20[] memory wrappedSrcTokens, uint256[] memory srcRates) = _getWrappedTokens(srcToken, useWrappers);
         (IERC20[] memory wrappedDstTokens, uint256[] memory dstRates) = _getWrappedTokens(dstToken, useWrappers);
         IERC20[][2] memory allConnectors = _getAllConnectors(customConnectors);
 
-        uint256 maxArrLength = wrappedSrcTokens.length * wrappedDstTokens.length * (allConnectors[0].length + allConnectors[1].length) * allOracles.length;
+        uint256 maxArrLength = wrappedSrcTokens.length * wrappedDstTokens.length * (allConnectors[0].length + allConnectors[1].length) * customOracles.length;
         OraclePrices.Data memory ratesAndWeights = OraclePrices.init(maxArrLength);
         unchecked {
             for (uint256 k1 = 0; k1 < wrappedSrcTokens.length; k1++) {
@@ -275,9 +300,9 @@ contract OffchainOracle is Ownable {
                             if (connector == wrappedSrcTokens[k1] || connector == wrappedDstTokens[k2]) {
                                 continue;
                             }
-                            for (uint256 i = 0; i < allOracles.length; i++) {
+                            for (uint256 i = 0; i < customOracles.length; i++) {
                                 GetRateImplParams memory params = GetRateImplParams({
-                                    oracle: allOracles[i],
+                                    oracle: customOracles[i],
                                     srcToken: wrappedSrcTokens[k1],
                                     srcTokenRate: srcRates[k1],
                                     dstToken: wrappedDstTokens[k2],
@@ -318,6 +343,21 @@ contract OffchainOracle is Ownable {
         weightedRates = new uint256[](length);
         for (uint256 i = 0; i < length; i++) {
             weightedRates[i] = getRateWithCustomConnectors(srcTokens[i], dstToken, useWrappers, customConnectors, thresholdFilter);
+        }
+    }
+
+    function getManyRatesWithCustomConnectorsAndOracles(
+        IERC20[] calldata srcTokens,
+        IERC20 dstToken,
+        bool useWrappers,
+        IERC20[] calldata customConnectors,
+        IOracle[] calldata customOracles,
+        uint256 thresholdFilter
+    ) external view returns (uint256[] memory weightedRates) {
+        uint256 length = srcTokens.length;
+        weightedRates = new uint256[](length);
+        for (uint256 i = 0; i < length; i++) {
+            weightedRates[i] = getRateWithCustomConnectorsAndOracles(srcTokens[i], dstToken, useWrappers, customConnectors, customOracles, thresholdFilter);
         }
     }
 
