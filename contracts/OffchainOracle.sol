@@ -346,6 +346,19 @@ contract OffchainOracle is Ownable {
         }
     }
 
+    function getManyRatesToEthWithCustomConnectors(
+        IERC20[] calldata srcTokens,
+        bool useWrappers,
+        IERC20[] calldata customConnectors,
+        uint256 thresholdFilter
+    ) external view returns (uint256[] memory weightedRates) {
+        uint256 length = srcTokens.length;
+        weightedRates = new uint256[](length);
+        for (uint256 i = 0; i < length; i++) {
+            weightedRates[i] = getRateToEthWithCustomConnectors(srcTokens[i], useWrappers, customConnectors, thresholdFilter);
+        }
+    }
+
     function getManyRatesWithCustomConnectorsAndOracles(
         IERC20[] calldata srcTokens,
         IERC20 dstToken,
