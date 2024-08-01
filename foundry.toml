@@ -1,0 +1,20 @@
+[profile.default]
+src = "contracts"
+script = "deploy/foundry"
+out = "out"
+libs = ["node_modules", "lib"]
+solc_version = "0.8.23"
+
+fs_permissions = [{ access = "read-write", path = "./"}]
+
+[rpc_endpoints]
+optimism = "${OPTIMISM_RPC_URL}"
+base = "${BASE_RPC_URL}"
+mode = "${MODE_RPC_URL}"
+bob = "${BOB_RPC_URL}"
+
+[etherscan]
+optimism = { key = "${OPTIMISM_ETHERSCAN_KEY}", url = "${OPTIMISM_ETHERSCAN_VERIFIER_URL}" }
+base = { key = "${BASE_ETHERSCAN_KEY}", url = "${BASE_ETHERSCAN_VERIFIER_URL}" }
+mode = { key = "${MODE_ETHERSCAN_KEY}", url = "${MODE_ETHERSCAN_VERIFIER_URL}" }
+bob = { key = "${BOB_ETHERSCAN_KEY}", url = "${BOB_ETHERSCAN_VERIFIER_URL}" }

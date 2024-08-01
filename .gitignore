@@ -12,3 +12,6 @@ cache-zk
 solcInputs
 *.log
 deployments/hardhat
+
+out
+lib
