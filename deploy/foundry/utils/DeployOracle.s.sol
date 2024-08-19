@@ -65,45 +65,33 @@ contract DeployOracle is Base {
 
         if (stringToOracleEnum[oracleName] == OracleEnum.ChainlinkOracle) {
             oracle = IOracle(new ChainlinkOracle(IChainlink(_oracleParams.addressParams[0])));
-        }
-        else if (stringToOracleEnum[oracleName] == OracleEnum.DodoOracle) {
+        } else if (stringToOracleEnum[oracleName] == OracleEnum.DodoOracle) {
             oracle = IOracle(new DodoOracle(IDodoZoo(_oracleParams.addressParams[0])));
-        }
-        else if (stringToOracleEnum[oracleName] == OracleEnum.DodoV2Oracle) {
+        } else if (stringToOracleEnum[oracleName] == OracleEnum.DodoV2Oracle) {
             oracle = IOracle(new DodoV2Oracle(IDVMFactory(_oracleParams.addressParams[0])));
-        }
-         else if (stringToOracleEnum[oracleName] == OracleEnum.KlaySwapOracle) {
+        } else if (stringToOracleEnum[oracleName] == OracleEnum.KlaySwapOracle) {
             oracle = IOracle(
                 new KlaySwapOracle(
                     IKlaySwapFactory(_oracleParams.addressParams[0]), IKlaySwapStorage(_oracleParams.addressParams[1])
                 )
             );
-        }
-         else if (stringToOracleEnum[oracleName] == OracleEnum.KyberDmmOracle) {
+        } else if (stringToOracleEnum[oracleName] == OracleEnum.KyberDmmOracle) {
             oracle = IOracle(new KyberDmmOracle(IKyberDmmFactory(_oracleParams.addressParams[0])));
-        }
-         else if (stringToOracleEnum[oracleName] == OracleEnum.MooniswapOracle) {
+        } else if (stringToOracleEnum[oracleName] == OracleEnum.MooniswapOracle) {
             oracle = IOracle(new MooniswapOracle(IMooniswapFactory(_oracleParams.addressParams[0])));
-        }
-         else if (stringToOracleEnum[oracleName] == OracleEnum.SolidlyOracle) {
+        } else if (stringToOracleEnum[oracleName] == OracleEnum.SolidlyOracle) {
             oracle = IOracle(new SolidlyOracle(_oracleParams.addressParams[0], _oracleParams.bytesParams));
-        }
-         else if (stringToOracleEnum[oracleName] == OracleEnum.SolidlyOracleNoCreate2) {
+        } else if (stringToOracleEnum[oracleName] == OracleEnum.SolidlyOracleNoCreate2) {
             oracle = IOracle(new SolidlyOracleNoCreate2(ISolidlyFactory(_oracleParams.addressParams[0])));
-        }
-         else if (stringToOracleEnum[oracleName] == OracleEnum.SyncswapOracle) {
+        } else if (stringToOracleEnum[oracleName] == OracleEnum.SyncswapOracle) {
             oracle = IOracle(new SyncswapOracle(ISyncswapFactory(_oracleParams.addressParams[0])));
-        }
-         else if (stringToOracleEnum[oracleName] == OracleEnum.SynthetixOracle) {
+        } else if (stringToOracleEnum[oracleName] == OracleEnum.SynthetixOracle) {
             oracle = IOracle(new SynthetixOracle(ISynthetixProxy(_oracleParams.addressParams[0])));
-        }
-         else if (stringToOracleEnum[oracleName] == OracleEnum.UniswapOracle) {
+        } else if (stringToOracleEnum[oracleName] == OracleEnum.UniswapOracle) {
             oracle = IOracle(new UniswapOracle(IUniswapFactory(_oracleParams.addressParams[0])));
-        }
-         else if (stringToOracleEnum[oracleName] == OracleEnum.UniswapV2LikeOracle) {
+        } else if (stringToOracleEnum[oracleName] == OracleEnum.UniswapV2LikeOracle) {
             oracle = IOracle(new UniswapV2LikeOracle(_oracleParams.addressParams[0], _oracleParams.bytesParams));
-        }
-         else if (stringToOracleEnum[oracleName] == OracleEnum.UniswapV3LikeOracle) {
+        } else if (stringToOracleEnum[oracleName] == OracleEnum.UniswapV3LikeOracle) {
             oracle = IOracle(
                 new UniswapV3LikeOracle(
                     _oracleParams.addressParams[0], _oracleParams.bytesParams, _oracleParams.uint24Params

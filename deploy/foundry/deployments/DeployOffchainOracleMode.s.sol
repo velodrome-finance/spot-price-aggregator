@@ -35,25 +35,16 @@ contract DeployOffchainOracleMode is DeployOffchainOracle {
         //ionic
         addressParams[0] = 0xFB3323E24743Caf4ADD0fDCCFB268565c0685556;
         addressParams[1] = 0x71ef7EDa2Be775E5A7aa8afD02C45F059833e9d2;
-        wrapperParams[0] = WrapperParams({
-            wrapperName: "CompoundLikeWrapper",
-            addressParams: addressParams
-        });
+        wrapperParams[0] = WrapperParams({wrapperName: "CompoundLikeWrapper", addressParams: addressParams});
 
         //layerbank
         addressParams[0] = 0x80980869D90A737aff47aBA6FbaA923012C1FF50;
         addressParams[1] = 0xe855B8018C22A05F84724e93693caf166912aDD5;
-        wrapperParams[1] = WrapperParams({
-            wrapperName: "CompoundLikeWrapper",
-            addressParams: addressParams
-        });
+        wrapperParams[1] = WrapperParams({wrapperName: "CompoundLikeWrapper", addressParams: addressParams});
 
         deployWrappers();
 
-        multiWrapperParams = MultiWrapperParams({
-            existingWrappers: wrappers,
-            owner: OWNER
-        });
+        multiWrapperParams = MultiWrapperParams({existingWrappers: wrappers, owner: OWNER});
 
         deployMultiWrapper();
     }
@@ -64,7 +55,9 @@ contract DeployOffchainOracleMode is DeployOffchainOracle {
         address velodromeFactory = 0x31832f2a97Fd20664D76Cc421207669b55CE4BC0;
 
         bytes memory veloBytecodeCreate2 = abi.encodePacked(
-            hex"3d602d80600a3d3981f3363d3d373d3d3d363d73", 0x10499d88Bd32AF443Fc936F67DE32bE1c8Bb374C, hex"5af43d82803e903d91602b57fd5bf3"
+            hex"3d602d80600a3d3981f3363d3d373d3d3d363d73",
+            0x10499d88Bd32AF443Fc936F67DE32bE1c8Bb374C,
+            hex"5af43d82803e903d91602b57fd5bf3"
         );
         bytes32 velodromeInitcodeHash = keccak256(veloBytecodeCreate2);
 

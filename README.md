@@ -27,7 +27,7 @@ If no direct liquidity pair exists between two tokens, the spot price aggregator
 <details><summary>Supported DEXes</summary>
 
    * VelodromeV2 - [0xD4eFb5998DFBDFB791182fb610D0061136E9DB50](https://optimistic.etherscan.io/address/0xD4eFb5998DFBDFB791182fb610D0061136E9DB50)
-   * Slipstream - [0xeD55d76Bb48E042a177d1E21AffBe1B72d0c7dB0](https://optimistic.etherscan.io/address/0xeD55d76Bb48E042a177d1E21AffBe1B72d0c7dB0)
+   * Slipstream - [0xCd43e85D6e4dFaF3C7813fCb83FFe9C933E49a94](https://optimistic.etherscan.io/address/0xCd43e85D6e4dFaF3C7813fCb83FFe9C933E49a94)
 
 </details>
 

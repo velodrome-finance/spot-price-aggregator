@@ -17,10 +17,7 @@ contract DeployOffchainOracle is DeployMultiWrapper, DeployOracle, DeployWrapper
 
     OffchainOracleParams public offchainOracleParams;
 
-    function deployOffchainOracle()
-        internal
-        returns (OffchainOracle offchainOracle)
-    {
+    function deployOffchainOracle() internal returns (OffchainOracle offchainOracle) {
         offchainOracle = new OffchainOracle({
             _multiWrapper: offchainOracleParams.multiWrapper,
             existingOracles: offchainOracleParams.existingOracles,

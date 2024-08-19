@@ -56,16 +56,13 @@ contract DeployWrapper is Base {
 
         if (stringToWrapperEnum[wrapperName] == WrapperEnum.AaveWrapperV2) {
             wrapper = IWrapper(new AaveWrapperV2(ILendingPoolV2(_wrapperParams.addressParams[0])));
-        }
-         else if (stringToWrapperEnum[wrapperName] == WrapperEnum.AaveWrapperV3) {
+        } else if (stringToWrapperEnum[wrapperName] == WrapperEnum.AaveWrapperV3) {
             wrapper = IWrapper(new AaveWrapperV3(ILendingPoolV3(_wrapperParams.addressParams[0])));
-        }
-         else if (stringToWrapperEnum[wrapperName] == WrapperEnum.BaseCoinWrapper) {
+        } else if (stringToWrapperEnum[wrapperName] == WrapperEnum.BaseCoinWrapper) {
             wrapper = IWrapper(
                 new BaseCoinWrapper(IERC20(_wrapperParams.addressParams[0]), IERC20(_wrapperParams.addressParams[1]))
             );
-        }
-         else if (stringToWrapperEnum[wrapperName] == WrapperEnum.ChaiWrapper) {
+        } else if (stringToWrapperEnum[wrapperName] == WrapperEnum.ChaiWrapper) {
             wrapper = IWrapper(
                 new ChaiWrapper(
                     IERC20(_wrapperParams.addressParams[0]),
@@ -73,37 +70,29 @@ contract DeployWrapper is Base {
                     IChaiPot(_wrapperParams.addressParams[2])
                 )
             );
-        }
-         else if (stringToWrapperEnum[wrapperName] == WrapperEnum.CompoundLikeWrapper) {
+        } else if (stringToWrapperEnum[wrapperName] == WrapperEnum.CompoundLikeWrapper) {
             wrapper = IWrapper(
                 new CompoundLikeWrapper(
                     IComptroller(_wrapperParams.addressParams[0]), IERC20(_wrapperParams.addressParams[1])
                 )
             );
-        }
-         else if (stringToWrapperEnum[wrapperName] == WrapperEnum.CompoundV3Wrapper) {
+        } else if (stringToWrapperEnum[wrapperName] == WrapperEnum.CompoundV3Wrapper) {
             wrapper = IWrapper(new CompoundV3Wrapper(_wrapperParams.addressParams[0]));
-        }
-         else if (stringToWrapperEnum[wrapperName] == WrapperEnum.FulcrumWrapper) {
+        } else if (stringToWrapperEnum[wrapperName] == WrapperEnum.FulcrumWrapper) {
             wrapper = IWrapper(new FulcrumWrapper());
-        }
-         else if (stringToWrapperEnum[wrapperName] == WrapperEnum.FulcrumWrapperLegacy) {
+        } else if (stringToWrapperEnum[wrapperName] == WrapperEnum.FulcrumWrapperLegacy) {
             wrapper = IWrapper(new FulcrumWrapperLegacy(_wrapperParams.addressParams[0]));
-        }
-         else if (stringToWrapperEnum[wrapperName] == WrapperEnum.SDaiWrapper) {
+        } else if (stringToWrapperEnum[wrapperName] == WrapperEnum.SDaiWrapper) {
             wrapper = IWrapper(
                 new SDaiWrapper(IERC20(_wrapperParams.addressParams[0]), IERC20(_wrapperParams.addressParams[1]))
             );
-        }
-         else if (stringToWrapperEnum[wrapperName] == WrapperEnum.StataTokenWrapper) {
+        } else if (stringToWrapperEnum[wrapperName] == WrapperEnum.StataTokenWrapper) {
             wrapper = IWrapper(new StataTokenWrapper(IStaticATokenFactory(_wrapperParams.addressParams[0])));
-        }
-         else if (stringToWrapperEnum[wrapperName] == WrapperEnum.WstETHWrapper) {
+        } else if (stringToWrapperEnum[wrapperName] == WrapperEnum.WstETHWrapper) {
             wrapper = IWrapper(
                 new WstETHWrapper(IERC20(_wrapperParams.addressParams[0]), IERC20(_wrapperParams.addressParams[1]))
             );
-        }
-         else if (stringToWrapperEnum[wrapperName] == WrapperEnum.YVaultWrapper) {
+        } else if (stringToWrapperEnum[wrapperName] == WrapperEnum.YVaultWrapper) {
             wrapper = IWrapper(new YVaultWrapper());
         }
         _writeContractAddress(_wrapperParams.wrapperName, address(wrapper));

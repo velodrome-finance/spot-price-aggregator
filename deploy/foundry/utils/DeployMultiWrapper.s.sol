@@ -12,9 +12,7 @@ contract DeployMultiWrapper is Base {
     MultiWrapperParams public multiWrapperParams;
     MultiWrapper public multiWrapper;
 
-    function deployMultiWrapper()
-        internal
-    {
+    function deployMultiWrapper() internal {
         multiWrapper = new MultiWrapper(multiWrapperParams.existingWrappers, multiWrapperParams.owner);
         _writeContractAddress("MultiWrapper", address(multiWrapper));
     }
