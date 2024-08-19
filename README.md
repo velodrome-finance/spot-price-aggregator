@@ -22,7 +22,7 @@ If no direct liquidity pair exists between two tokens, the spot price aggregator
 
 ### Optimism (Optimistic)
 
-#### Oracle [0x07897Bb940536eee4C9a1B430Ee7dcf9AA5C55BB](https://optimistic.etherscan.io/address/0x07897Bb940536eee4C9a1B430Ee7dcf9AA5C55BB)
+#### Oracle [0xcFE4a016f5Af3a9929422A3Ef152a440460Dc43d](https://optimistic.etherscan.io/address/0xcFE4a016f5Af3a9929422A3Ef152a440460Dc43d)
 
 <details><summary>Supported DEXes</summary>
 
