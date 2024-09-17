@@ -10,3 +10,5 @@
 - Deleted 1inch deployment related files
 - Added Foundry deployment scripts with README.md
 - Moved hardhat README.md to deploy/root folder
+
+- Fixed stable pool quoting in SolidlyOracle

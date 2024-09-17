@@ -39,11 +39,25 @@ contract DeployOffchainOracleOptimism is DeployOffchainOracle {
 
     function _getOracles() internal {
         oracles = new IOracle[](2);
-        oracles[0] = IOracle(0xD4eFb5998DFBDFB791182fb610D0061136E9DB50);
+
+        oracleParams = new OracleParams[](2);
 
         oracleTypes = new OffchainOracle.OracleType[](2);
         oracleTypes[0] = OffchainOracle.OracleType.WETH;
         oracleTypes[1] = OffchainOracle.OracleType.WETH;
+
+        address[] memory addressParams = new address[](1);
+
+        bytes32 velodromeInitCodeHash = 0xc0629f1c7daa09624e54d4f711ba99922a844907cce02997176399e4cc7e8fcf;
+        addressParams[0] = 0xF1046053aa5682b4F9a81b5481394DA16BE5FF5a; //velodrome factory
+
+        oracleParams[0] = OracleParams({
+            oracleName: "SolidlyOracle",
+            addressParams: addressParams,
+            bytesParams: velodromeInitCodeHash,
+            uint24Params: new uint24[](0),
+            oraclekind: OffchainOracle.OracleType.WETH
+        });
 
         address slipstreamFactory = 0xCc0bDDB707055e04e497aB22a59c2aF4391cd12F;
         address slipstreamPoolImplementation = 0xc28aD28853A547556780BEBF7847628501A3bCbb;
@@ -55,7 +69,7 @@ contract DeployOffchainOracleOptimism is DeployOffchainOracle {
         );
         bytes32 slipstreamInitcodeHash = keccak256(slipstreamBytecodeCreate2);
 
-        address[] memory addressParams = new address[](1);
+        addressParams = new address[](1);
         addressParams[0] = slipstreamFactory;
 
         uint24[] memory uint24Params = new uint24[](5);
@@ -65,8 +79,7 @@ contract DeployOffchainOracleOptimism is DeployOffchainOracle {
         uint24Params[3] = 200;
         uint24Params[4] = 2_000;
 
-        oracleParams = new OracleParams[](1);
-        oracleParams[0] = OracleParams({
+        oracleParams[1] = OracleParams({
             oracleName: "UniswapV3LikeOracle",
             addressParams: addressParams,
             bytesParams: slipstreamInitcodeHash,
@@ -74,7 +87,7 @@ contract DeployOffchainOracleOptimism is DeployOffchainOracle {
             oraclekind: OffchainOracle.OracleType.WETH
         });
 
-        oracles[1] = deployOracle(oracleParams[0]);
+        deployOracles();
     }
 
     function _getConnectors() internal {

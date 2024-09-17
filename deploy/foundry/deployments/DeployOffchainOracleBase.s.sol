@@ -39,6 +39,61 @@ contract DeployOffchainOracleBase is DeployOffchainOracle {
         oracleTypes = new OffchainOracle.OracleType[](2);
         oracleTypes[0] = OffchainOracle.OracleType.WETH;
         oracleTypes[1] = OffchainOracle.OracleType.WETH;
+
+        oracles = new IOracle[](2);
+
+        oracleParams = new OracleParams[](2);
+
+        oracleTypes = new OffchainOracle.OracleType[](2);
+        oracleTypes[0] = OffchainOracle.OracleType.WETH;
+        oracleTypes[1] = OffchainOracle.OracleType.WETH;
+
+        address[] memory addressParams = new address[](1);
+
+        bytes32 aerodromeInitCodeHash = 0x6f178972b07752b522a4da1c5b71af6524e8b0bd6027ccb29e5312b0e5bcdc3c;
+        addressParams[0] = 0x420DD381b31aEf6683db6B902084cB0FFECe40Da; //aerodrome factory
+
+        oracleParams[0] = OracleParams({
+            oracleName: "SolidlyOracle",
+            addressParams: addressParams,
+            bytesParams: aerodromeInitCodeHash,
+            uint24Params: new uint24[](0),
+            oraclekind: OffchainOracle.OracleType.WETH
+        });
+
+        address slipstreamFactory = 0x5e7BB104d84c7CB9B682AaC2F3d509f5F406809A;
+        address slipstreamPoolImplementation = 0xeC8E5342B19977B4eF8892e02D8DAEcfa1315831;
+
+        bytes memory slipstreamBytecodeCreate2 = abi.encodePacked(
+            hex"3d602d80600a3d3981f3363d3d373d3d3d363d73",
+            slipstreamPoolImplementation,
+            hex"5af43d82803e903d91602b57fd5bf3"
+        );
+        bytes32 slipstreamInitcodeHash = keccak256(slipstreamBytecodeCreate2);
+        require(
+            slipstreamInitcodeHash == bytes32(0xffb9af9ea6d9e39da47392ecc7055277b9915b8bfc9f83f105821b7791a6ae30),
+            "INITCODE_HASH"
+        );
+
+        addressParams = new address[](1);
+        addressParams[0] = slipstreamFactory;
+
+        uint24[] memory uint24Params = new uint24[](5);
+        uint24Params[0] = 1;
+        uint24Params[1] = 50;
+        uint24Params[2] = 100;
+        uint24Params[3] = 200;
+        uint24Params[4] = 2_000;
+
+        oracleParams[1] = OracleParams({
+            oracleName: "UniswapV3LikeOracle",
+            addressParams: addressParams,
+            bytesParams: slipstreamInitcodeHash,
+            uint24Params: uint24Params,
+            oraclekind: OffchainOracle.OracleType.WETH
+        });
+
+        deployOracles();
     }
 
     function _getConnectors() internal {
