@@ -137,6 +137,28 @@ If no direct liquidity pair exists between two tokens, the spot price aggregator
 
 </details>
 
+### Lisk
+
+#### Oracle [0x024503003fFE9AF285f47c1DaAaA497D9f1166D0](https://blockscout.lisk.com/address/0x024503003fFE9AF285f47c1DaAaA497D9f1166D0)
+
+<details><summary>Supported DEXes</summary>
+
+   * VelodromeV2 - [0xA83Efe588141B580F5E7c666cB6dcb321A217428](https://blockscout.lisk.com/address/0xA83Efe588141B580F5E7c666cB6dcb321A217428)
+   * Slipstream - [0xC60A684E00f2aEc11603348A615cb2b454B62e31](https://blockscout.lisk.com/address/0xC60A684E00f2aEc11603348A615cb2b454B62e31)
+
+</details>
+
+<details><summary>Supported connectors</summary>
+
+   * NONE - [0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF](https://blockscout.lisk.com/address/0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF)
+   * USDT - [0x05D032ac25d322df992303dCa074EE7392C117b9](https://blockscout.lisk.com/address/0x05D032ac25d322df992303dCa074EE7392C117b9)
+   * USDC.e - [0xF242275d3a6527d877f2c927a82D9b057609cc71](https://blockscout.lisk.com/address/0xF242275d3a6527d877f2c927a82D9b057609cc71)
+   * WETH - [0x4200000000000000000000000000000000000006](https://blockscout.lisk.com/address/0x4200000000000000000000000000000000000006)
+   * LSK - [0xac485391EB2d7D88253a7F1eF18C37f4242D1A24](https://blockscout.lisk.com/address/0xac485391EB2d7D88253a7F1eF18C37f4242D1A24)
+   * XVELO - [0x7f9AdFbd38b669F03d1d11000Bc76b9AaEA28A81](https://blockscout.lisk.com/address/0x7f9AdFbd38b669F03d1d11000Bc76b9AaEA28A81)
+
+</details>
+
 ## Examples
 
 * [Single token-to-ETH price usage](https://github.com/1inch-exchange/offchain-oracle/blob/master/examples/single-price.js)

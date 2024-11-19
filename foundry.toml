@@ -13,6 +13,7 @@ optimism = "${OPTIMISM_RPC_URL}"
 base = "${BASE_RPC_URL}"
 mode = "${MODE_RPC_URL}"
 bob = "${BOB_RPC_URL}"
+lisk = "${LISK_RPC_URL}"
 
 [etherscan]
 optimism = { key = "${OPTIMISM_ETHERSCAN_KEY}", url = "${OPTIMISM_ETHERSCAN_VERIFIER_URL}" }
