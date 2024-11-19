@@ -15,7 +15,7 @@ import "contracts/wrappers/StataTokenWrapper.sol";
 import "contracts/wrappers/WstETHWrapper.sol";
 import "contracts/wrappers/YVaultWrapper.sol";
 
-contract DeployWrapper is Base {
+abstract contract DeployWrapper is Base {
     enum WrapperEnum {
         AaveWrapperV2,
         AaveWrapperV3,

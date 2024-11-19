@@ -4,7 +4,7 @@ pragma solidity >=0.8.20 <0.9.0;
 import "deploy/foundry/utils/DeployWrapper.s.sol";
 import "contracts/MultiWrapper.sol";
 
-contract DeployWrapperAndAdd is DeployWrapper {
+abstract contract DeployWrapperAndAdd is DeployWrapper {
     function _setWrappersParams() internal {
         // wrapperParams = new WrapperParams[](1);
         // wrapperParams[0] = WrapperParams("AaveWrapperV2", new address[](1));

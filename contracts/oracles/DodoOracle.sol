@@ -19,7 +19,12 @@ contract DodoOracle is IOracle {
         FACTORY = _dodoZoo;
     }
 
-    function getRate(IERC20 srcToken, IERC20 dstToken, IERC20 connector, uint256 /*thresholdFilter*/) external view override returns (uint256 rate, uint256 weight) {
+    function getRate(IERC20 srcToken, IERC20 dstToken, IERC20 connector, uint256 /*thresholdFilter*/ )
+        external
+        view
+        override
+        returns (uint256 rate, uint256 weight)
+    {
         uint256 balanceSrc;
         uint256 balanceDst;
         if (connector == _NONE) {
@@ -37,11 +42,15 @@ contract DodoOracle is IOracle {
         }
     }
 
-    function _getDodoInfo(address srcToken, address dstToken) internal view returns (uint256 rate, uint256 balanceSrc, uint256 balanceDst) {
+    function _getDodoInfo(address srcToken, address dstToken)
+        internal
+        view
+        returns (uint256 rate, uint256 balanceSrc, uint256 balanceDst)
+    {
         IDodo dodo = IDodo(FACTORY.getDODO(srcToken, dstToken));
         bool isSrcBase = (dodo != _ZERO_DODO);
         if (!isSrcBase) dodo = IDodo(FACTORY.getDODO(dstToken, srcToken));
-        if(dodo == _ZERO_DODO) revert PoolNotFound();
+        if (dodo == _ZERO_DODO) revert PoolNotFound();
 
         uint256 price = dodo.getMidPrice();
         rate = isSrcBase ? price : 1e36 / price;

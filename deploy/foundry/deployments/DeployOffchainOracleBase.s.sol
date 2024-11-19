@@ -8,6 +8,10 @@ contract DeployOffchainOracleBase is DeployOffchainOracle {
 
     IERC20[] public connectors;
 
+    function setUp() public override {
+        chainName = "BASE";
+    }
+
     function run() public {
         vm.startBroadcast();
         _getMultiWrapper();

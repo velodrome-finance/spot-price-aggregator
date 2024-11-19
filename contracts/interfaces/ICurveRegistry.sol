@@ -9,10 +9,16 @@ interface ICurveRegistry {
     function pool_list(uint256 index) external view returns (address);
 
     // MAIN_REGISTRY, METAPOOL_FACTORY, CRYPTOSWAP_REGISTRY, CRYPTOPOOL_FACTORY, METAREGISTRY, CRVUSD_PLAIN_POOLS, CURVE_TRICRYPTO_FACTORY
-    function find_pool_for_coins(address _srcToken, address _dstToken, uint256 _index) external view returns (address);
+    function find_pool_for_coins(address _srcToken, address _dstToken, uint256 _index)
+        external
+        view
+        returns (address);
 
     // MAIN_REGISTRY, METAPOOL_FACTORY, METAREGISTRY, CRVUSD_PLAIN_POOLS
-    function get_coin_indices(address _pool, address _srcToken, address _dstToken) external view returns (int128, int128, bool);
+    function get_coin_indices(address _pool, address _srcToken, address _dstToken)
+        external
+        view
+        returns (int128, int128, bool);
     // CRYPTOSWAP_REGISTRY, CRYPTOPOOL_FACTORY, CURVE_TRICRYPTO_FACTORY - returns (uint256,uint256);
 
     // MAIN_REGISTRY, CRYPTOSWAP_REGISTRY, METAREGISTRY

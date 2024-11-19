@@ -76,19 +76,26 @@ contract MultiWrapper is Ownable {
      * @return wrappedTokens Tokens obtainable by wrapping the input token, including the input token and a rate of 1e18 for it.
      * @return rates Conversion rates for the wrapped tokens.
      */
-    function getWrappedTokens(IERC20 token) external view returns (IERC20[] memory wrappedTokens, uint256[] memory rates) {
+    function getWrappedTokens(IERC20 token)
+        external
+        view
+        returns (IERC20[] memory wrappedTokens, uint256[] memory rates)
+    {
         unchecked {
             IERC20[] memory memWrappedTokens = new IERC20[](20);
             uint256[] memory memRates = new uint256[](20);
             uint256 len = 0;
             for (uint256 i = 0; i < _wrappers._inner._values.length; i++) {
-                try IWrapper(address(uint160(uint256(_wrappers._inner._values[i])))).wrap(token) returns (IERC20 wrappedToken, uint256 rate) {
+                try IWrapper(address(uint160(uint256(_wrappers._inner._values[i])))).wrap(token) returns (
+                    IERC20 wrappedToken, uint256 rate
+                ) {
                     memWrappedTokens[len] = wrappedToken;
                     memRates[len] = rate;
                     len += 1;
                     for (uint256 j = 0; j < _wrappers._inner._values.length; j++) {
                         if (i != j) {
-                            try IWrapper(address(uint160(uint256(_wrappers._inner._values[j])))).wrap(wrappedToken) returns (IERC20 wrappedToken2, uint256 rate2) {
+                            try IWrapper(address(uint160(uint256(_wrappers._inner._values[j])))).wrap(wrappedToken)
+                            returns (IERC20 wrappedToken2, uint256 rate2) {
                                 bool used = false;
                                 for (uint256 k = 0; k < len; k++) {
                                     if (wrappedToken2 == memWrappedTokens[k]) {

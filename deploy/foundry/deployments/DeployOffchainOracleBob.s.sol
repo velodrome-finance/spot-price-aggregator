@@ -8,6 +8,10 @@ contract DeployOffchainOracleBob is DeployOffchainOracle {
 
     IERC20[] public connectors;
 
+    function setUp() public override {
+        chainName = "BOB";
+    }
+
     function run() public {
         vm.startBroadcast();
         _getMultiWrapper();

@@ -5,7 +5,7 @@ import "deploy/foundry/utils/DeployOracle.s.sol";
 import "deploy/foundry/utils/DeployWrapper.s.sol";
 import "deploy/foundry/utils/DeployMultiWrapper.s.sol";
 
-contract DeployOffchainOracle is DeployMultiWrapper, DeployOracle, DeployWrapper {
+abstract contract DeployOffchainOracle is DeployMultiWrapper, DeployOracle, DeployWrapper {
     struct OffchainOracleParams {
         MultiWrapper multiWrapper;
         IOracle[] existingOracles;

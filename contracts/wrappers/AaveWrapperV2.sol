@@ -21,7 +21,7 @@ contract AaveWrapperV2 is IWrapper {
             for (uint256 i = 0; i < tokens.length; i++) {
                 ILendingPoolV2.ReserveData memory reserveData = _LENDING_POOL.getReserveData(address(tokens[i]));
                 IERC20 aToken = IERC20(reserveData.aTokenAddress);
-                if(aToken == IERC20(address(0))) revert NotAddedMarket();
+                if (aToken == IERC20(address(0))) revert NotAddedMarket();
                 aTokenToToken[aToken] = tokens[i];
                 tokenToaToken[tokens[i]] = aToken;
             }
@@ -33,7 +33,7 @@ contract AaveWrapperV2 is IWrapper {
             for (uint256 i = 0; i < tokens.length; i++) {
                 ILendingPoolV2.ReserveData memory reserveData = _LENDING_POOL.getReserveData(address(tokens[i]));
                 IERC20 aToken = IERC20(reserveData.aTokenAddress);
-                if(aToken != IERC20(address(0))) revert NotRemovedMarket();
+                if (aToken != IERC20(address(0))) revert NotRemovedMarket();
                 delete aTokenToToken[aToken];
                 delete tokenToaToken[tokens[i]];
             }

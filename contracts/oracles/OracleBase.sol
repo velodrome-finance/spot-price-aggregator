@@ -11,7 +11,12 @@ abstract contract OracleBase is IOracle {
 
     IERC20 private constant _NONE = IERC20(0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF);
 
-    function getRate(IERC20 srcToken, IERC20 dstToken, IERC20 connector, uint256 /*thresholdFilter*/) external view override returns (uint256 rate, uint256 weight) {
+    function getRate(IERC20 srcToken, IERC20 dstToken, IERC20 connector, uint256 /*thresholdFilter*/ )
+        external
+        view
+        override
+        returns (uint256 rate, uint256 weight)
+    {
         uint256 balance0;
         uint256 balance1;
         if (connector == _NONE) {
@@ -33,5 +38,9 @@ abstract contract OracleBase is IOracle {
         rate = Math.mulDiv(balance1, 1e18, balance0);
     }
 
-    function _getBalances(IERC20 srcToken, IERC20 dstToken) internal view virtual returns (uint256 srcBalance, uint256 dstBalance);
+    function _getBalances(IERC20 srcToken, IERC20 dstToken)
+        internal
+        view
+        virtual
+        returns (uint256 srcBalance, uint256 dstBalance);
 }

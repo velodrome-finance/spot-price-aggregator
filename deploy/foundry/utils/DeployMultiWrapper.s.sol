@@ -3,7 +3,7 @@ pragma solidity >=0.8.20 <0.9.0;
 
 import "deploy/foundry/utils/Base.s.sol";
 
-contract DeployMultiWrapper is Base {
+abstract contract DeployMultiWrapper is Base {
     struct MultiWrapperParams {
         IWrapper[] existingWrappers;
         address owner;

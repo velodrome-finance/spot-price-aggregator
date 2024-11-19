@@ -6,4 +6,3 @@ interface IWstETH {
     function tokensPerStEth() external view returns (uint256);
     function stEthPerToken() external view returns (uint256);
 }
-

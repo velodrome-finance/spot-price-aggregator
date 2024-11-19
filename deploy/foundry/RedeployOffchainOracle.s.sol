@@ -3,7 +3,7 @@ pragma solidity >=0.8.20 <0.9.0;
 
 import "deploy/foundry/utils/DeployOffchainOracle.s.sol";
 
-contract RedeployOffchainOracle is DeployOffchainOracle {
+abstract contract RedeployOffchainOracle is DeployOffchainOracle {
     function _setOffchainOracle() internal {
         OffchainOracle oldOffchainOracle = OffchainOracle(_getOffchainOracle());
         (IOracle[] memory allOracles, OffchainOracle.OracleType[] memory oracleTypes) = oldOffchainOracle.oracles();

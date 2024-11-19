@@ -2,7 +2,7 @@
 
 pragma solidity 0.8.23;
 
-import { IChaiPot } from "../interfaces/IChai.sol";
+import {IChaiPot} from "../interfaces/IChai.sol";
 import "./Wrapper.sol";
 
 contract ChaiWrapper is Wrapper {
@@ -21,11 +21,11 @@ contract ChaiWrapper is Wrapper {
         return (BASE, _rmul(POT.chi(), 1e18));
     }
 
-    function _rdivup(uint x, uint y) internal pure returns (uint z) {
+    function _rdivup(uint256 x, uint256 y) internal pure returns (uint256 z) {
         z = (x * _ONE + y - 1) / y;
     }
 
-    function _rmul(uint x, uint y) internal pure returns (uint z) {
+    function _rmul(uint256 x, uint256 y) internal pure returns (uint256 z) {
         z = x * y / _ONE;
     }
 }

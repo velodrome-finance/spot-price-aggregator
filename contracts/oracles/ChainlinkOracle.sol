@@ -23,9 +23,14 @@ contract ChainlinkOracle is IOracle {
         CHAINLINK = _chainlink;
     }
 
-    function getRate(IERC20 srcToken, IERC20 dstToken, IERC20 connector, uint256 /*thresholdFilter*/) external view override returns (uint256 rate, uint256 weight) {
+    function getRate(IERC20 srcToken, IERC20 dstToken, IERC20 connector, uint256 /*thresholdFilter*/ )
+        external
+        view
+        override
+        returns (uint256 rate, uint256 weight)
+    {
         unchecked {
-            if(connector != _NONE) revert ConnectorShouldBeNone();
+            if (connector != _NONE) revert ConnectorShouldBeNone();
             (uint256 srcAnswer, uint8 srcDecimals) = srcToken != _ETH ? _getRate(srcToken) : (1e18, 18);
             (uint256 dstAnswer, uint8 dstDecimals) = dstToken != _ETH ? _getRate(dstToken) : (1e18, 18);
             rate = Math.mulDiv(srcAnswer, 1e18, dstAnswer);
@@ -35,8 +40,8 @@ contract ChainlinkOracle is IOracle {
 
     function _getRate(IERC20 token) private view returns (uint256 rate, uint8 decimals) {
         unchecked {
-            (, int256 answer, , uint256 srcUpdatedAt, ) = CHAINLINK.latestRoundData(token, _QUOTE);
-            if(block.timestamp >= srcUpdatedAt + _RATE_TTL) revert RateTooOld();
+            (, int256 answer,, uint256 srcUpdatedAt,) = CHAINLINK.latestRoundData(token, _QUOTE);
+            if (block.timestamp >= srcUpdatedAt + _RATE_TTL) revert RateTooOld();
             rate = answer.toUint256();
             decimals = ERC20(address(token)).decimals();
             rate = rate * (10 ** (18 - decimals));

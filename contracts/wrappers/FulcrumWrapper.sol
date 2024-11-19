@@ -16,7 +16,7 @@ contract FulcrumWrapper is IWrapper {
         unchecked {
             for (uint256 i = 0; i < markets.length; i++) {
                 address loanPool = _BZX_PROTOCOL.underlyingToLoanPool(address(markets[i]));
-                if(loanPool == address(0)) revert NotAddedMarket();
+                if (loanPool == address(0)) revert NotAddedMarket();
                 iTokenToToken[IERC20(loanPool)] = markets[i];
                 tokenToiToken[markets[i]] = IERC20(loanPool);
             }
@@ -27,7 +27,7 @@ contract FulcrumWrapper is IWrapper {
         unchecked {
             for (uint256 i = 0; i < markets.length; i++) {
                 address loanPool = _BZX_PROTOCOL.underlyingToLoanPool(address(markets[i]));
-                if(loanPool != address(0)) revert NotRemovedMarket();
+                if (loanPool != address(0)) revert NotRemovedMarket();
                 delete iTokenToToken[IERC20(loanPool)];
                 delete tokenToiToken[markets[i]];
             }

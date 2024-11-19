@@ -83,11 +83,13 @@ If no direct liquidity pair exists between two tokens, the spot price aggregator
 
 ### Mode
 
-#### Oracle [0x687DFC5fE17c85fcf2e789c105b589a8332790b9](https://explorer.mode.network/address/0x687DFC5fE17c85fcf2e789c105b589a8332790b9)
+#### Oracle [0xbAEe949B52cb503e39f1Df54Dcee778da59E11bc](https://explorer.mode.network/address/0xbAEe949B52cb503e39f1Df54Dcee778da59E11bc)
 
 <details><summary>Supported DEXes</summary>
 
-   * VelodromeV2 - [0x2E12Ada0dd2106812e6C64B3ACC890c65cDb3b66](https://explorer.mode.network/address/0x2E12Ada0dd2106812e6C64B3ACC890c65cDb3b66)
+   * VelodromeV2 - [0xF6cE387e11Cb8195C192c5E09b0E937D2B43665e](https://explorer.mode.network/address/0xF6cE387e11Cb8195C192c5E09b0E937D2B43665e)
+   * Slipstream - [0xE7520590779811C2fE97419D15864E5000d54a5b](https://explorer.mode.network/address/0xE7520590779811C2fE97419D15864E5000d54a5b)
+
 
 </details>
 

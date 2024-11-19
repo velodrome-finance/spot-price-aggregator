@@ -3,7 +3,7 @@ pragma solidity >=0.8.20 <0.9.0;
 
 import "deploy/foundry/utils/DeployOracle.s.sol";
 
-contract DeployOracleAndAdd is DeployOracle {
+abstract contract DeployOracleAndAdd is DeployOracle {
     function _setOraclesParams() internal returns (OracleParams[] memory) {
         // oracleParams = new OracleParams[](1);
         // oracleParams[0] = OracleParams({

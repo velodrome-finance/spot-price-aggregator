@@ -21,8 +21,8 @@ contract CompoundLikeWrapper is IWrapper {
     function addMarkets(ICToken[] memory markets) external {
         unchecked {
             for (uint256 i = 0; i < markets.length; i++) {
-                (bool isListed, , ) = _COMPTROLLER.markets(markets[i]);
-                if(!isListed) revert NotAddedMarket();
+                (bool isListed,,) = _COMPTROLLER.markets(markets[i]);
+                if (!isListed) revert NotAddedMarket();
                 IERC20 underlying = markets[i].underlying();
                 cTokenToToken[markets[i]] = underlying;
                 tokenTocToken[underlying] = markets[i];
@@ -33,8 +33,8 @@ contract CompoundLikeWrapper is IWrapper {
     function removeMarkets(ICToken[] memory markets) external {
         unchecked {
             for (uint256 i = 0; i < markets.length; i++) {
-                (bool isListed, , ) = _COMPTROLLER.markets(markets[i]);
-                if(isListed) revert NotRemovedMarket();
+                (bool isListed,,) = _COMPTROLLER.markets(markets[i]);
+                if (isListed) revert NotRemovedMarket();
                 IERC20 underlying = markets[i].underlying();
                 delete cTokenToToken[markets[i]];
                 delete tokenTocToken[underlying];

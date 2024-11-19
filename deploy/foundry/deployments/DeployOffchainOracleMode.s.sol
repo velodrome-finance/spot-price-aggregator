@@ -8,6 +8,10 @@ contract DeployOffchainOracleMode is DeployOffchainOracle {
 
     IERC20[] public connectors;
 
+    function setUp() public override {
+        chainName = "MODE";
+    }
+
     function run() public {
         vm.startBroadcast();
         _getMultiWrapper();
@@ -50,7 +54,7 @@ contract DeployOffchainOracleMode is DeployOffchainOracle {
     }
 
     function _getOracles() internal {
-        oracleParams = new OracleParams[](1);
+        oracleParams = new OracleParams[](2);
 
         address velodromeFactory = 0x31832f2a97Fd20664D76Cc421207669b55CE4BC0;
 
@@ -72,14 +76,41 @@ contract DeployOffchainOracleMode is DeployOffchainOracle {
             oraclekind: OffchainOracle.OracleType.WETH
         });
 
+        // slipstream
+        address slipstreamFactory = 0x04625B046C69577EfC40e6c0Bb83CDBAfab5a55F;
+
+        bytes memory slipstreamBytecodeCreate2 = abi.encodePacked(
+            hex"3d602d80600a3d3981f3363d3d373d3d3d363d73",
+            0x321f7Dfb9B2eA9131B8C17691CF6e01E5c149cA8,
+            hex"5af43d82803e903d91602b57fd5bf3"
+        );
+        bytes32 slipstreamInitcodeHash = keccak256(slipstreamBytecodeCreate2);
+        addressParams[0] = slipstreamFactory;
+
+        uint24[] memory uint24Params = new uint24[](5);
+        uint24Params[0] = 1;
+        uint24Params[1] = 50;
+        uint24Params[2] = 100;
+        uint24Params[3] = 200;
+        uint24Params[4] = 2_000;
+
+        oracleParams[1] = OracleParams({
+            oracleName: "UniswapV3LikeOracle",
+            addressParams: addressParams,
+            bytesParams: slipstreamInitcodeHash,
+            uint24Params: uint24Params,
+            oraclekind: OffchainOracle.OracleType.WETH
+        });
+
         deployOracles();
     }
 
     function _getConnectors() internal {
-        connectors = new IERC20[](4);
-        connectors[0] = IERC20(0x4200000000000000000000000000000000000006); //weth
-        connectors[1] = IERC20(0xDfc7C877a950e49D2610114102175A06C2e3167a); //mode
-        connectors[2] = IERC20(0xd988097fb8612cc24eeC14542bC03424c656005f); //usdc
-        connectors[3] = IERC20(0xf0F161fDA2712DB8b566946122a5af183995e2eD); //usdt
+        connectors = new IERC20[](5);
+        connectors[0] = IERC20(0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF); //NONE
+        connectors[1] = IERC20(0x4200000000000000000000000000000000000006); //weth
+        connectors[2] = IERC20(0xDfc7C877a950e49D2610114102175A06C2e3167a); //mode
+        connectors[3] = IERC20(0xd988097fb8612cc24eeC14542bC03424c656005f); //usdc
+        connectors[4] = IERC20(0xf0F161fDA2712DB8b566946122a5af183995e2eD); //usdt
     }
 }

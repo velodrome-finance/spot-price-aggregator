@@ -8,6 +8,10 @@ contract DeployOffchainOracleOptimism is DeployOffchainOracle {
 
     IERC20[] public connectors;
 
+    function setUp() public override {
+        chainName = "OPTIMISM";
+    }
+
     function run() public {
         vm.startBroadcast();
         _getMultiWrapper();

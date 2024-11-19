@@ -16,7 +16,7 @@ import "contracts/oracles/UniswapOracle.sol";
 import "contracts/oracles/UniswapV2LikeOracle.sol";
 import "contracts/oracles/UniswapV3LikeOracle.sol";
 
-contract DeployOracle is Base {
+abstract contract DeployOracle is Base {
     enum OracleEnum {
         ChainlinkOracle,
         DodoOracle,

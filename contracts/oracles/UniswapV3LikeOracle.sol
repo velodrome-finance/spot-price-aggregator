@@ -33,7 +33,12 @@ contract UniswapV3LikeOracle is IOracle {
         }
     }
 
-    function getRate(IERC20 srcToken, IERC20 dstToken, IERC20 connector, uint256 thresholdFilter) external override view returns (uint256 rate, uint256 weight) {
+    function getRate(IERC20 srcToken, IERC20 dstToken, IERC20 connector, uint256 thresholdFilter)
+        external
+        view
+        override
+        returns (uint256 rate, uint256 weight)
+    {
         OraclePrices.Data memory ratesAndWeights;
         unchecked {
             if (connector == _NONE) {
@@ -43,7 +48,7 @@ contract UniswapV3LikeOracle is IOracle {
                     ratesAndWeights.append(OraclePrices.OraclePrice(rate0, w));
                 }
             } else {
-                ratesAndWeights = OraclePrices.init(SUPPORTED_FEES_COUNT**2);
+                ratesAndWeights = OraclePrices.init(SUPPORTED_FEES_COUNT ** 2);
                 for (uint256 i = 0; i < SUPPORTED_FEES_COUNT; i++) {
                     for (uint256 j = 0; j < SUPPORTED_FEES_COUNT; j++) {
                         (uint256 rate0, uint256 w0) = _getRate(srcToken, connector, fees[i]);
@@ -54,7 +59,9 @@ contract UniswapV3LikeOracle is IOracle {
                         if (w1 == 0) {
                             continue;
                         }
-                        ratesAndWeights.append(OraclePrices.OraclePrice(Math.mulDiv(rate0, rate1, 1e18), Math.min(w0, w1)));
+                        ratesAndWeights.append(
+                            OraclePrices.OraclePrice(Math.mulDiv(rate0, rate1, 1e18), Math.min(w0, w1))
+                        );
                     }
                 }
             }
@@ -62,10 +69,15 @@ contract UniswapV3LikeOracle is IOracle {
         return ratesAndWeights.getRateAndWeight(thresholdFilter);
     }
 
-    function _getRate(IERC20 srcToken, IERC20 dstToken, uint24 fee) internal view returns (uint256 rate, uint256 liquidity) {
+    function _getRate(IERC20 srcToken, IERC20 dstToken, uint24 fee)
+        internal
+        view
+        returns (uint256 rate, uint256 liquidity)
+    {
         (IERC20 token0, IERC20 token1) = srcToken < dstToken ? (srcToken, dstToken) : (dstToken, srcToken);
         address pool = _getPool(address(token0), address(token1), fee);
-        if (pool.code.length == 0) { // !pool.isContract()
+        if (pool.code.length == 0) {
+            // !pool.isContract()
             return (0, 0);
         }
         liquidity = IUniswapV3Pool(pool).liquidity();
@@ -100,20 +112,15 @@ contract UniswapV3LikeOracle is IOracle {
         }
     }
 
-    function _getPool(address token0, address token1, uint24 fee) internal view virtual returns (address) {
-        return address(uint160(uint256(
-                keccak256(
-                    abi.encodePacked(
-                        hex'ff',
-                        FACTORY,
-                        keccak256(abi.encode(token0, token1, fee)),
-                        INITCODE_HASH
+    function _getPool(address token0, address token1, uint24 fee) private view returns (address) {
+        return address(
+            uint160(
+                uint256(
+                    keccak256(
+                        abi.encodePacked(hex"ff", FACTORY, keccak256(abi.encode(token0, token1, fee)), INITCODE_HASH)
                     )
                 )
-            )));
-    }
-
-    function _currentState(address pool) internal view virtual returns (uint256 sqrtPriceX96, int24 tick) {
-        (sqrtPriceX96, tick) = IUniswapV3Pool(pool).slot0();
+            )
+        );
     }
 }

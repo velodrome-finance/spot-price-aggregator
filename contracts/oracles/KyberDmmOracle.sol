@@ -21,12 +21,17 @@ contract KyberDmmOracle is IOracle {
 
     IERC20 private constant _NONE = IERC20(0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF);
 
-    function getRate(IERC20 srcToken, IERC20 dstToken, IERC20 connector, uint256 thresholdFilter) external override view returns (uint256 rate, uint256 weight) {
+    function getRate(IERC20 srcToken, IERC20 dstToken, IERC20 connector, uint256 thresholdFilter)
+        external
+        view
+        override
+        returns (uint256 rate, uint256 weight)
+    {
         OraclePrices.Data memory ratesAndWeights;
         if (connector == _NONE) {
             address[] memory pools = FACTORY.getPools(srcToken, dstToken);
 
-            if(pools.length == 0) revert PoolNotFound();
+            if (pools.length == 0) revert PoolNotFound();
 
             ratesAndWeights = OraclePrices.init(pools.length);
             for (uint256 i = 0; i < pools.length; i++) {
@@ -37,7 +42,7 @@ contract KyberDmmOracle is IOracle {
             address[] memory pools0 = FACTORY.getPools(srcToken, connector);
             address[] memory pools1 = FACTORY.getPools(connector, dstToken);
 
-            if(pools0.length == 0 || pools1.length == 0) revert PoolWithConnectorNotFound();
+            if (pools0.length == 0 || pools1.length == 0) revert PoolWithConnectorNotFound();
 
             ratesAndWeights = OraclePrices.init(pools0.length * pools1.length);
             for (uint256 i = 0; i < pools0.length; i++) {
@@ -52,8 +57,12 @@ contract KyberDmmOracle is IOracle {
         return ratesAndWeights.getRateAndWeight(thresholdFilter);
     }
 
-    function _getBalances(IERC20 srcToken, IERC20 dstToken, address pool) private view returns (uint256 srcBalance, uint256 dstBalance) {
-        (, , srcBalance, dstBalance,) = IKyberDmmPool(pool).getTradeInfo();
+    function _getBalances(IERC20 srcToken, IERC20 dstToken, address pool)
+        private
+        view
+        returns (uint256 srcBalance, uint256 dstBalance)
+    {
+        (,, srcBalance, dstBalance,) = IKyberDmmPool(pool).getTradeInfo();
         if (srcToken > dstToken) {
             (srcBalance, dstBalance) = (dstBalance, srcBalance);
         }

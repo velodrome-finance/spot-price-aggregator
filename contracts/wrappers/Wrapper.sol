@@ -14,7 +14,7 @@ abstract contract Wrapper is IWrapper {
     }
 
     function wrap(IERC20 token) external view override returns (IERC20 wrappedToken, uint256 rate) {
-        if(token == BASE) {
+        if (token == BASE) {
             return _wrap();
         } else if (token == WBASE) {
             return _unwrap();

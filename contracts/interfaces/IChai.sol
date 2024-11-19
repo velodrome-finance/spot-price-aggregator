@@ -13,4 +13,3 @@ interface IChai {
 interface IChaiPot {
     function chi() external view returns (uint256);
 }
-
