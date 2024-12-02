@@ -22,12 +22,12 @@ If no direct liquidity pair exists between two tokens, the spot price aggregator
 
 ### Optimism (Optimistic)
 
-#### Oracle [0x223598de128fC8C10F42f9E85451D9Eb885F8Eb6](https://optimistic.etherscan.io/address/0x223598de128fC8C10F42f9E85451D9Eb885F8Eb6)
+#### Oracle [0x59114D308C6DE4A84F5F8cD80485a5481047b99f](https://optimistic.etherscan.io/address/0x59114D308C6DE4A84F5F8cD80485a5481047b99f)
 
 <details><summary>Supported DEXes</summary>
 
-   * VelodromeV2 - [0xe3223b779F72aEE895c7883bc44f660012CffED8](https://optimistic.etherscan.io/address/0xe3223b779F72aEE895c7883bc44f660012CffED8)
-   * Slipstream - [0x6720B8f5023B5f2df4d3577551afdd2263a16718](https://optimistic.etherscan.io/address/0x6720B8f5023B5f2df4d3577551afdd2263a16718)
+   * VelodromeV2 - [0xF82D282E9FAcE46F73835e775330fD4770654f1A](https://optimistic.etherscan.io/address/0xF82D282E9FAcE46F73835e775330fD4770654f1A)
+   * Slipstream - [0x799bF23950F2B2e28b8a2A0ea78fd8Ca4f61fD9c](https://optimistic.etherscan.io/address/0x799bF23950F2B2e28b8a2A0ea78fd8Ca4f61fD9c)
 
 </details>
 
@@ -54,12 +54,12 @@ If no direct liquidity pair exists between two tokens, the spot price aggregator
 
 ### Base
 
-#### Oracle [0x9d855303771C11468802cAB1574Ba64E658B4640](https://basescan.org/address/0x9d855303771C11468802cAB1574Ba64E658B4640)
+#### Oracle [0x3B06c787711ecb5624cE65AC8F26cde10831eb0C](https://basescan.org/address/0x3B06c787711ecb5624cE65AC8F26cde10831eb0C)
 
 <details><summary>Supported DEXes</summary>
 
-   * VelodromeV2 - [0x3201a8457726cBe06843d677Dd6dAE7c8Aa740d6](https://basescan.org/address/0x3201a8457726cBe06843d677Dd6dAE7c8Aa740d6)
-   * Slipstream - [0xeAEbf7Cd9247Ed3e2346EC4dd6700BDba000fd27](https://basescan.org/address/0xeAEbf7Cd9247Ed3e2346EC4dd6700BDba000fd27)
+   * VelodromeV2 - [0x309E98D9A45d7294f0F85f8d986BB0C6EB01cc39](https://basescan.org/address/0x309E98D9A45d7294f0F85f8d986BB0C6EB01cc39)
+   * Slipstream - [0x42430f1D93acbd5F38128fe4DBdde3c5B09a2b7E](https://basescan.org/address/0x42430f1D93acbd5F38128fe4DBdde3c5B09a2b7E)
 
 </details>
 
@@ -90,7 +90,6 @@ If no direct liquidity pair exists between two tokens, the spot price aggregator
    * VelodromeV2 - [0xF6cE387e11Cb8195C192c5E09b0E937D2B43665e](https://explorer.mode.network/address/0xF6cE387e11Cb8195C192c5E09b0E937D2B43665e)
    * Slipstream - [0xE7520590779811C2fE97419D15864E5000d54a5b](https://explorer.mode.network/address/0xE7520590779811C2fE97419D15864E5000d54a5b)
 
-
 </details>
 
 <details><summary>Supported wrappers</summary>
@@ -112,11 +111,11 @@ If no direct liquidity pair exists between two tokens, the spot price aggregator
 
 ### Bob
 
-#### Oracle [0xC5B282587CF396114eDA1fc3CA33C7361f4742Ae](https://explorer.gobob.xyz/address/0xC5B282587CF396114eDA1fc3CA33C7361f4742Ae)
+#### Oracle [0x611917785D8d1221E8Eca045580e3A14C4254Ab5](https://explorer.gobob.xyz/address/0x611917785D8d1221E8Eca045580e3A14C4254Ab5)
 
 <details><summary>Supported DEXes</summary>
 
-   * VelodromeV2 - [0x5f365698B11dd35Af525c1F63Fd10eB388ec4545](https://explorer.gobob.xyz/address/0x5f365698B11dd35Af525c1F63Fd10eB388ec4545)
+   * VelodromeV2 - [0xabE4cbcE47707D7A74bF6F1a343FF2c92267D3ea](https://explorer.gobob.xyz/address/0xabE4cbcE47707D7A74bF6F1a343FF2c92267D3ea)
 
 </details>
 

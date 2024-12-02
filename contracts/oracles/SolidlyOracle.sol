@@ -47,7 +47,7 @@ contract SolidlyOracle is IOracle {
         OraclePrices.Data memory ratesAndWeights = OraclePrices.init(2);
         (uint256 b0, uint256 b1) = _getBalances(srcToken, dstToken, true);
         if (b1 > 0) {
-            ratesAndWeights.append(OraclePrices.OraclePrice(_stableRate(srcToken, dstToken), (b0 * b1).sqrt()));
+            ratesAndWeights.append(OraclePrices.OraclePrice(_stableRate(srcToken, dstToken, b0), (b0 * b1).sqrt()));
         }
         (b0, b1) = _getBalances(srcToken, dstToken, false);
         if (b0 > 0) {
@@ -87,17 +87,25 @@ contract SolidlyOracle is IOracle {
         }
     }
 
-    function _stableRate(IERC20 srcToken, IERC20 dstToken) internal view returns (uint256 rate) {
+    function _stableRate(IERC20 srcToken, IERC20 dstToken, uint256 b0) internal view returns (uint256 rate) {
         uint8 srcTokenDecimals = ERC20(address(srcToken)).decimals();
 
         (IERC20 token0, IERC20 token1) = srcToken < dstToken ? (srcToken, dstToken) : (dstToken, srcToken);
         address currentPair = _pairFor(token0, token1, true);
 
+        // get rate using maximum of 10% of liquidity
+        bool isIlliquid = (10 ** srcTokenDecimals) > (b0 / 10);
+        uint256 srcTokenAmountIn = isIlliquid ? (b0 / 10) : (10 ** srcTokenDecimals);
+
         (bool success, bytes memory data) = currentPair.staticcall(
-            abi.encodeWithSelector(IUniswapV2Pair.getAmountOut.selector, 10 ** srcTokenDecimals, address(srcToken))
+            abi.encodeWithSelector(IUniswapV2Pair.getAmountOut.selector, srcTokenAmountIn, address(srcToken))
         );
         if (success) {
             uint256 outputAmount = abi.decode(data, (uint256));
+            // normalize to 1 token unit, pad to maintain precision
+            if (isIlliquid) {
+                outputAmount = outputAmount * ((10 ** (srcTokenDecimals + 3)) / b0) / 100;
+            }
             rate = Math.mulDiv(outputAmount, 1e18, (10 ** srcTokenDecimals));
         } else {
             rate = 0;
