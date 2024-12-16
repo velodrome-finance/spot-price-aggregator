@@ -3,13 +3,13 @@ pragma solidity >=0.8.20 <0.9.0;
 
 import "deploy/foundry/utils/DeployOffchainOracle.s.sol";
 
-contract DeployOffchainOracleLisk is DeployOffchainOracle {
-    address public constant OWNER = 0xe915AEf46E1bd9b9eD2D9FE571AE9b5afbDE571b;
+contract DeployOffchainOracleFraxtal is DeployOffchainOracle {
+    address public constant OWNER = 0x607EbA808EF2685fAc3da68aB96De961fa8F3312;
 
     IERC20[] public connectors;
 
     function setUp() public override {
-        chainName = "LISK";
+        chainName = "FRAXTAL";
     }
 
     function run() public {
@@ -23,7 +23,7 @@ contract DeployOffchainOracleLisk is DeployOffchainOracle {
             existingOracles: oracles,
             oracleTypes: oracleTypes,
             existingConnectors: connectors,
-            wBase: IERC20(0x4200000000000000000000000000000000000006),
+            wBase: IERC20(0xFC00000000000000000000000000000000000006),
             owner: OWNER
         });
 
@@ -32,7 +32,13 @@ contract DeployOffchainOracleLisk is DeployOffchainOracle {
     }
 
     function _getMultiWrapper() internal {
-        wrappers = new IWrapper[](0);
+        wrappers = new IWrapper[](1);
+
+        // frxETH -> wfrxETH
+        wrappers[0] = new BaseCoinWrapper(
+            IERC20(0x0000000000000000000000000000000000000000),
+            IERC20(0xFC00000000000000000000000000000000000006)
+        );
 
         multiWrapperParams = MultiWrapperParams({existingWrappers: wrappers, owner: OWNER});
 
@@ -93,12 +99,15 @@ contract DeployOffchainOracleLisk is DeployOffchainOracle {
     }
 
     function _getConnectors() internal {
-        connectors = new IERC20[](6);
+        connectors = new IERC20[](8);
+
         connectors[0] = IERC20(0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF); // NONE
-        connectors[1] = IERC20(0x05D032ac25d322df992303dCa074EE7392C117b9); // USDT
-        connectors[2] = IERC20(0xF242275d3a6527d877f2c927a82D9b057609cc71); // USDC.e
-        connectors[3] = IERC20(0x4200000000000000000000000000000000000006); //WETH
-        connectors[4] = IERC20(0xac485391EB2d7D88253a7F1eF18C37f4242D1A24); //LSK
-        connectors[5] = IERC20(0x7f9AdFbd38b669F03d1d11000Bc76b9AaEA28A81); //XVELO
+        connectors[1] = IERC20(0xFc00000000000000000000000000000000000001); // FRAX
+        connectors[2] = IERC20(0xFC00000000000000000000000000000000000006); // wfrxETH
+        connectors[3] = IERC20(0xFC00000000000000000000000000000000000005); // sfrxETH
+        connectors[4] = IERC20(0x5d3a1Ff2b6BAb83b63cd9AD0787074081a52ef34); // USDe
+        connectors[5] = IERC20(0x211Cc4DD073734dA055fbF44a2b4667d5E5fE5d2); // sUSDe
+        connectors[6] = IERC20(0xDcc0F2D8F90FDe85b10aC1c8Ab57dc0AE946A543); // USDC
+        connectors[7] = IERC20(0x4200000000000000000000000000000000000006); // WETH
     }
 }

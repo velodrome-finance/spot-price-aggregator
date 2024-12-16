@@ -158,6 +158,30 @@ If no direct liquidity pair exists between two tokens, the spot price aggregator
 
 </details>
 
+### Fraxtal
+
+#### Oracle [0x4817f8D70aE32Ee96e5E6BFA24eb7Fcfa83bbf29](https://fraxscan.com/address/0x4817f8D70aE32Ee96e5E6BFA24eb7Fcfa83bbf29)
+
+<details><summary>Supported DEXes</summary>
+
+   * VelodromeV2 - [0xE6423B79A3a95dD76DFc2D5183a6329837bbD051](https://fraxscan.com/address/0xE6423B79A3a95dD76DFc2D5183a6329837bbD051)
+   * Slipstream - [0xfc8589901150cb1600381F36E936b817B6251919](https://fraxscan.com/address/0xfc8589901150cb1600381F36E936b817B6251919)
+
+</details>
+
+<details><summary>Supported connectors</summary>
+
+   * NONE - [0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF](https://fraxscan.com/address/0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF)
+   * FRAX - [0xFc00000000000000000000000000000000000001](https://fraxscan.com/address/0xFc00000000000000000000000000000000000001)
+   * wfrxETH - [0xFC00000000000000000000000000000000000006](https://fraxscan.com/address/0xFC00000000000000000000000000000000000006)
+   * sfrxETH - [0xFC00000000000000000000000000000000000005](https://fraxscan.com/address/0xFC00000000000000000000000000000000000005)
+   * USDe - [0x5d3a1Ff2b6BAb83b63cd9AD0787074081a52ef34](https://fraxscan.com/address/0x5d3a1Ff2b6BAb83b63cd9AD0787074081a52ef34)
+   * sUSDe - [0x211Cc4DD073734dA055fbF44a2b4667d5E5fE5d2](https://fraxscan.com/address/0x211Cc4DD073734dA055fbF44a2b4667d5E5fE5d2)
+   * USDC - [0xDcc0F2D8F90FDe85b10aC1c8Ab57dc0AE946A543](https://fraxscan.com/address/0xDcc0F2D8F90FDe85b10aC1c8Ab57dc0AE946A543)
+   * WETH - [0x4200000000000000000000000000000000000006](https://fraxscan.com/address/0x4200000000000000000000000000000000000006)
+
+</details>
+
 ## Examples
 
 * [Single token-to-ETH price usage](https://github.com/1inch-exchange/offchain-oracle/blob/master/examples/single-price.js)
