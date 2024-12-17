@@ -182,6 +182,27 @@ If no direct liquidity pair exists between two tokens, the spot price aggregator
 
 </details>
 
+### Metal
+
+#### Oracle [0x3e71CCdf495d9628D3655A600Bcad3afF2ddea98](https://explorer.metall2.com/address/0x3e71CCdf495d9628D3655A600Bcad3afF2ddea98)
+
+<details><summary>Supported DEXes</summary>
+
+   * VelodromeV2 - [0x593D092BB28CCEfe33bFdD3d9457e77Bd3084271](https://explorer.metall2.com/address/0x593D092BB28CCEfe33bFdD3d9457e77Bd3084271)
+   * Slipstream - [0x8Eb6838B4e998DA08aab851F3d42076f21530389](https://explorer.metall2.com/address/0x8Eb6838B4e998DA08aab851F3d42076f21530389)
+
+</details>
+
+<details><summary>Supported connectors</summary>
+
+   * NONE - [0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF](https://explorer.metall2.com/address/0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF)
+   * USDC - [0xb91CFCcA485C6E40E3bC622f9BFA02a8ACdEeBab](https://explorer.metall2.com/address/0xb91CFCcA485C6E40E3bC622f9BFA02a8ACdEeBab)
+   * WETH - [0x4200000000000000000000000000000000000006](https://explorer.metall2.com/address/0x4200000000000000000000000000000000000006)
+   * MTL - [0xBCFc435d8F276585f6431Fc1b9EE9A850B5C00A9](https://explorer.metall2.com/address/0xBCFc435d8F276585f6431Fc1b9EE9A850B5C00A9)
+   * XVELO - [0x7f9AdFbd38b669F03d1d11000Bc76b9AaEA28A81](https://explorer.metall2.com/address/0x7f9AdFbd38b669F03d1d11000Bc76b9AaEA28A81)
+
+</details>
+
 ## Examples
 
 * [Single token-to-ETH price usage](https://github.com/1inch-exchange/offchain-oracle/blob/master/examples/single-price.js)
