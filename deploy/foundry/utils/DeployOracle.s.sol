@@ -33,72 +33,59 @@ abstract contract DeployOracle is Base {
         UniswapV3LikeOracle
     }
 
-    struct OracleParams {
-        string oracleName;
-        address[] addressParams;
-        bytes32 bytesParams;
-        uint24[] uint24Params;
-        OffchainOracle.OracleType oraclekind;
-    }
-
-    mapping(string => OracleEnum) public stringToOracleEnum;
-
-    OracleParams[] public oracleParams;
+    mapping(string => OracleEnum) private _stringToOracleEnum;
 
     IOracle[] public oracles;
-    OffchainOracle.OracleType[] public oracleTypes;
 
-    function deployOracles() internal {
+    function _deployOracles() internal {
         _setOracleMapping();
 
-        oracles = new IOracle[](oracleParams.length);
-        oracleTypes = new OffchainOracle.OracleType[](oracleParams.length);
-        for (uint256 i = 0; i < oracleParams.length; i++) {
-            oracles[i] = deployOracle(oracleParams[i]);
-            oracleTypes[i] = oracleParams[i].oraclekind;
+        uint256 length = params.oracleNames.length;
+        oracles = new IOracle[](length);
+        for (uint256 i = 0; i < length; i++) {
+            oracles[i] = _deployOracle(
+                params.oracleNames[i], params.addressParams[i], params.bytesParams[i], params.uint24Params[i]
+            );
         }
     }
 
-    function deployOracle(OracleParams memory _oracleParams) internal returns (IOracle oracle) {
+    function _deployOracle(
+        string memory _oracleName,
+        address[] memory _addressParams,
+        bytes32 _bytesParams,
+        uint24[] memory _uint24Params
+    ) private returns (IOracle oracle) {
         _setOracleMapping();
-        string memory oracleName = _oracleParams.oracleName;
 
-        if (stringToOracleEnum[oracleName] == OracleEnum.ChainlinkOracle) {
-            oracle = IOracle(new ChainlinkOracle(IChainlink(_oracleParams.addressParams[0])));
-        } else if (stringToOracleEnum[oracleName] == OracleEnum.DodoOracle) {
-            oracle = IOracle(new DodoOracle(IDodoZoo(_oracleParams.addressParams[0])));
-        } else if (stringToOracleEnum[oracleName] == OracleEnum.DodoV2Oracle) {
-            oracle = IOracle(new DodoV2Oracle(IDVMFactory(_oracleParams.addressParams[0])));
-        } else if (stringToOracleEnum[oracleName] == OracleEnum.KlaySwapOracle) {
-            oracle = IOracle(
-                new KlaySwapOracle(
-                    IKlaySwapFactory(_oracleParams.addressParams[0]), IKlaySwapStorage(_oracleParams.addressParams[1])
-                )
-            );
-        } else if (stringToOracleEnum[oracleName] == OracleEnum.KyberDmmOracle) {
-            oracle = IOracle(new KyberDmmOracle(IKyberDmmFactory(_oracleParams.addressParams[0])));
-        } else if (stringToOracleEnum[oracleName] == OracleEnum.MooniswapOracle) {
-            oracle = IOracle(new MooniswapOracle(IMooniswapFactory(_oracleParams.addressParams[0])));
-        } else if (stringToOracleEnum[oracleName] == OracleEnum.SolidlyOracle) {
-            oracle = IOracle(new SolidlyOracle(_oracleParams.addressParams[0], _oracleParams.bytesParams));
-        } else if (stringToOracleEnum[oracleName] == OracleEnum.SolidlyOracleNoCreate2) {
-            oracle = IOracle(new SolidlyOracleNoCreate2(ISolidlyFactory(_oracleParams.addressParams[0])));
-        } else if (stringToOracleEnum[oracleName] == OracleEnum.SyncswapOracle) {
-            oracle = IOracle(new SyncswapOracle(ISyncswapFactory(_oracleParams.addressParams[0])));
-        } else if (stringToOracleEnum[oracleName] == OracleEnum.SynthetixOracle) {
-            oracle = IOracle(new SynthetixOracle(ISynthetixProxy(_oracleParams.addressParams[0])));
-        } else if (stringToOracleEnum[oracleName] == OracleEnum.UniswapOracle) {
-            oracle = IOracle(new UniswapOracle(IUniswapFactory(_oracleParams.addressParams[0])));
-        } else if (stringToOracleEnum[oracleName] == OracleEnum.UniswapV2LikeOracle) {
-            oracle = IOracle(new UniswapV2LikeOracle(_oracleParams.addressParams[0], _oracleParams.bytesParams));
-        } else if (stringToOracleEnum[oracleName] == OracleEnum.UniswapV3LikeOracle) {
-            oracle = IOracle(
-                new UniswapV3LikeOracle(
-                    _oracleParams.addressParams[0], _oracleParams.bytesParams, _oracleParams.uint24Params
-                )
-            );
+        if (_stringToOracleEnum[_oracleName] == OracleEnum.ChainlinkOracle) {
+            oracle = IOracle(new ChainlinkOracle(IChainlink(_addressParams[0])));
+        } else if (_stringToOracleEnum[_oracleName] == OracleEnum.DodoOracle) {
+            oracle = IOracle(new DodoOracle(IDodoZoo(_addressParams[0])));
+        } else if (_stringToOracleEnum[_oracleName] == OracleEnum.DodoV2Oracle) {
+            oracle = IOracle(new DodoV2Oracle(IDVMFactory(_addressParams[0])));
+        } else if (_stringToOracleEnum[_oracleName] == OracleEnum.KlaySwapOracle) {
+            oracle =
+                IOracle(new KlaySwapOracle(IKlaySwapFactory(_addressParams[0]), IKlaySwapStorage(_addressParams[1])));
+        } else if (_stringToOracleEnum[_oracleName] == OracleEnum.KyberDmmOracle) {
+            oracle = IOracle(new KyberDmmOracle(IKyberDmmFactory(_addressParams[0])));
+        } else if (_stringToOracleEnum[_oracleName] == OracleEnum.MooniswapOracle) {
+            oracle = IOracle(new MooniswapOracle(IMooniswapFactory(_addressParams[0])));
+        } else if (_stringToOracleEnum[_oracleName] == OracleEnum.SolidlyOracle) {
+            oracle = IOracle(new SolidlyOracle(_addressParams[0], _bytesParams));
+        } else if (_stringToOracleEnum[_oracleName] == OracleEnum.SolidlyOracleNoCreate2) {
+            oracle = IOracle(new SolidlyOracleNoCreate2(ISolidlyFactory(_addressParams[0])));
+        } else if (_stringToOracleEnum[_oracleName] == OracleEnum.SyncswapOracle) {
+            oracle = IOracle(new SyncswapOracle(ISyncswapFactory(_addressParams[0])));
+        } else if (_stringToOracleEnum[_oracleName] == OracleEnum.SynthetixOracle) {
+            oracle = IOracle(new SynthetixOracle(ISynthetixProxy(_addressParams[0])));
+        } else if (_stringToOracleEnum[_oracleName] == OracleEnum.UniswapOracle) {
+            oracle = IOracle(new UniswapOracle(IUniswapFactory(_addressParams[0])));
+        } else if (_stringToOracleEnum[_oracleName] == OracleEnum.UniswapV2LikeOracle) {
+            oracle = IOracle(new UniswapV2LikeOracle(_addressParams[0], _bytesParams));
+        } else if (_stringToOracleEnum[_oracleName] == OracleEnum.UniswapV3LikeOracle) {
+            oracle = IOracle(new UniswapV3LikeOracle(_addressParams[0], _bytesParams, _uint24Params));
         }
-        _writeContractAddress(_oracleParams.oracleName, address(oracle));
+        _writeContractAddress(_oracleName, address(oracle));
 
         if (address(oracle) == address(0)) {
             revert("Oracle name not found.");
@@ -106,18 +93,18 @@ abstract contract DeployOracle is Base {
     }
 
     function _setOracleMapping() private {
-        stringToOracleEnum["ChainlinkOracle"] = OracleEnum.ChainlinkOracle;
-        stringToOracleEnum["DodoOracle"] = OracleEnum.DodoOracle;
-        stringToOracleEnum["DodoV2Oracle"] = OracleEnum.DodoV2Oracle;
-        stringToOracleEnum["KlaySwapOracle"] = OracleEnum.KlaySwapOracle;
-        stringToOracleEnum["KyberDmmOracle"] = OracleEnum.KyberDmmOracle;
-        stringToOracleEnum["MooniswapOracle"] = OracleEnum.MooniswapOracle;
-        stringToOracleEnum["SolidlyOracle"] = OracleEnum.SolidlyOracle;
-        stringToOracleEnum["SolidlyOracleNoCreate2"] = OracleEnum.SolidlyOracleNoCreate2;
-        stringToOracleEnum["SyncswapOracle"] = OracleEnum.SyncswapOracle;
-        stringToOracleEnum["SynthetixOracle"] = OracleEnum.SynthetixOracle;
-        stringToOracleEnum["UniswapOracle"] = OracleEnum.UniswapOracle;
-        stringToOracleEnum["UniswapV2LikeOracle"] = OracleEnum.UniswapV2LikeOracle;
-        stringToOracleEnum["UniswapV3LikeOracle"] = OracleEnum.UniswapV3LikeOracle;
+        _stringToOracleEnum["ChainlinkOracle"] = OracleEnum.ChainlinkOracle;
+        _stringToOracleEnum["DodoOracle"] = OracleEnum.DodoOracle;
+        _stringToOracleEnum["DodoV2Oracle"] = OracleEnum.DodoV2Oracle;
+        _stringToOracleEnum["KlaySwapOracle"] = OracleEnum.KlaySwapOracle;
+        _stringToOracleEnum["KyberDmmOracle"] = OracleEnum.KyberDmmOracle;
+        _stringToOracleEnum["MooniswapOracle"] = OracleEnum.MooniswapOracle;
+        _stringToOracleEnum["SolidlyOracle"] = OracleEnum.SolidlyOracle;
+        _stringToOracleEnum["SolidlyOracleNoCreate2"] = OracleEnum.SolidlyOracleNoCreate2;
+        _stringToOracleEnum["SyncswapOracle"] = OracleEnum.SyncswapOracle;
+        _stringToOracleEnum["SynthetixOracle"] = OracleEnum.SynthetixOracle;
+        _stringToOracleEnum["UniswapOracle"] = OracleEnum.UniswapOracle;
+        _stringToOracleEnum["UniswapV2LikeOracle"] = OracleEnum.UniswapV2LikeOracle;
+        _stringToOracleEnum["UniswapV3LikeOracle"] = OracleEnum.UniswapV3LikeOracle;
     }
 }

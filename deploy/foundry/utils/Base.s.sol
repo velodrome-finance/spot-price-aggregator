@@ -9,9 +9,27 @@ import "contracts/MultiWrapper.sol";
 abstract contract Base is Script {
     using stdJson for string;
 
-    string public chainName;
+    struct DeploymentParameters {
+        //common params
+        address owner;
+        string chainName;
+        //multiWrapper params
+        string[] wrapperNames;
+        address[][] wrapperParams;
+        //oracle params
+        string[] oracleNames;
+        address[][] addressParams;
+        bytes32[] bytesParams;
+        uint24[][] uint24Params;
+        OffchainOracle.OracleType[] oracleTypes;
+        //offchain oracle params
+        IERC20[] connectors;
+        IERC20 wBase;
+    }
 
-    address public deployerAddress = 0xd42C7914cF8dc24a1075E29C283C581bd1b0d3D3;
+    DeploymentParameters public params;
+
+    address public deployer = 0xd42C7914cF8dc24a1075E29C283C581bd1b0d3D3;
 
     function setUp() public virtual;
 
@@ -20,14 +38,14 @@ abstract contract Base is Script {
     }
 
     function _getContractAddress(string memory contractName) internal view returns (address contractAddress) {
-        string memory deploymentFilePath = string.concat(vm.projectRoot(), "/deployments/", chainName, ".json");
+        string memory deploymentFilePath = string.concat(vm.projectRoot(), "/deployments/", params.chainName, ".json");
         string memory deploymentFile = vm.readFile(deploymentFilePath);
         string memory jsonKey = string.concat("...", contractName);
         contractAddress = abi.decode(vm.parseJson(deploymentFile, jsonKey), (address));
     }
 
     function _writeContractAddress(string memory contractName, address contractAddress) internal {
-        string memory deploymentFilePath = string.concat(vm.projectRoot(), "/deployments/", chainName, ".json");
+        string memory deploymentFilePath = string.concat(vm.projectRoot(), "/deployments/", params.chainName, ".json");
         string memory jsonObj = vm.serializeAddress("...", contractName, contractAddress);
         vm.writeJson(jsonObj, deploymentFilePath);
     }
