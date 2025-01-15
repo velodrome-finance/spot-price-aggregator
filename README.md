@@ -223,6 +223,26 @@ If no direct liquidity pair exists between two tokens, the spot price aggregator
 
 </details>
 
+### Ink
+
+#### Oracle [0xe58920a8c684CD3d6dCaC2a41b12998e4CB17EfE](https://explorer.inkonchain.com/address/0xe58920a8c684CD3d6dCaC2a41b12998e4CB17EfE)
+
+<details><summary>Supported DEXes</summary>
+
+   * VelodromeV2 - [0x34a26CA2dFb98f4440e6B5bbFAA854dd72B1E39b](https://explorer.inkonchain.com/address/0x34a26CA2dFb98f4440e6B5bbFAA854dd72B1E39b)
+   * Slipstream - [0x0D6d3Da47E495c0249073B6587E44Da1d2f35070](https://explorer.inkonchain.com/address/0x0D6d3Da47E495c0249073B6587E44Da1d2f35070)
+
+</details>
+
+<details><summary>Supported connectors</summary>
+
+   * NONE - [0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF](https://explorer.inkonchain.com/address/0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF)
+   * USDC - [0xF1815bd50389c46847f0Bda824eC8da914045D14](https://explorer.inkonchain.com/address/0xb91CFCcA485C6E40E3bC622f9BFA02a8ACdEeBab)
+   * WETH - [0x4200000000000000000000000000000000000006](https://explorer.inkonchain.com/address/0x4200000000000000000000000000000000000006)
+   * XVELO - [0x7f9AdFbd38b669F03d1d11000Bc76b9AaEA28A81](https://explorer.inkonchain.com/address/0x7f9AdFbd38b669F03d1d11000Bc76b9AaEA28A81)
+
+</details>
+
 ## Examples
 
 * [Single token-to-ETH price usage](https://github.com/1inch-exchange/offchain-oracle/blob/master/examples/single-price.js)
