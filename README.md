@@ -243,6 +243,28 @@ If no direct liquidity pair exists between two tokens, the spot price aggregator
 
 </details>
 
+### Superseed
+
+#### Oracle [0xe58920a8c684CD3d6dCaC2a41b12998e4CB17EfE](https://explorer.superseed.xyz/address/0xe58920a8c684CD3d6dCaC2a41b12998e4CB17EfE)
+
+<details><summary>Supported DEXes</summary>
+
+   * VelodromeV2 - [0x34a26CA2dFb98f4440e6B5bbFAA854dd72B1E39b](https://explorer.superseed.xyz/address/0x34a26CA2dFb98f4440e6B5bbFAA854dd72B1E39b)
+   * Slipstream - [0x0D6d3Da47E495c0249073B6587E44Da1d2f35070](https://explorer.superseed.xyz/address/0x0D6d3Da47E495c0249073B6587E44Da1d2f35070)
+
+</details>
+
+<details><summary>Supported connectors</summary>
+
+   * NONE - [0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF](https://explorer.superseed.xyz/address/0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF)
+   * WETH - [0x4200000000000000000000000000000000000006](https://explorer.superseed.xyz/address/0x4200000000000000000000000000000000000006)
+   * USDC - [0xC316C8252B5F2176d0135Ebb0999E99296998F2e](https://explorer.superseed.xyz/address/0xC316C8252B5F2176d0135Ebb0999E99296998F2e)
+   * USDT - [0xc5068BB6803ADbe5600DE5189fe27A4dAcE31170](https://explorer.superseed.xyz/address/0xc5068BB6803ADbe5600DE5189fe27A4dAcE31170)
+   * CBBTC - [0x6f36DBD829DE9b7e077DB8A35b480d4329ceB331](https://explorer.superseed.xyz/address/0x6f36DBD829DE9b7e077DB8A35b480d4329ceB331)
+   * XVELO - [0x7f9AdFbd38b669F03d1d11000Bc76b9AaEA28A81](https://explorer.superseed.xyz/address/0x7f9AdFbd38b669F03d1d11000Bc76b9AaEA28A81)
+
+</details>
+
 ## Examples
 
 * [Single token-to-ETH price usage](https://github.com/1inch-exchange/offchain-oracle/blob/master/examples/single-price.js)
