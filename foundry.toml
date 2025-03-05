@@ -21,6 +21,7 @@ fraxtal = "${FRAXTAL_RPC_URL}"
 soneium = "${SONEIUM_RPC_URL}"
 ink = "${INK_RPC_URL}"
 superseed = "${SUPERSEED_RPC_URL}"
+swell = "${SWELL_RPC_URL}"
 
 [etherscan]
 optimism = { key = "${OPTIMISM_ETHERSCAN_KEY}", url = "${OPTIMISM_ETHERSCAN_VERIFIER_URL}" }
@@ -32,3 +33,4 @@ fraxtal = { key = "${FRAXTAL_ETHERSCAN_API_KEY}", url = "${FRAXTAL_ETHERSCAN_VER
 soneium = { key = "NA", url = "${SONEIUM_ETHERSCAN_VERIFIER_URL}"}
 ink = { key = "NA", url = "${INK_ETHERSCAN_VERIFIER_URL}"}
 superseed = { key = "NA", url = "${SUPERSEED_ETHERSCAN_VERIFIER_URL}"}
+swell = { key = "NA", url = "${SWELL_ETHERSCAN_VERIFIER_URL}"}
