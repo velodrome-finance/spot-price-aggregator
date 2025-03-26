@@ -32,12 +32,13 @@ contract DeployOffchainOracleBase is DeployOffchainOracle {
         );
 
         uint24[][] memory _uint24Params = new uint24[][](2);
-        _uint24Params[1] = new uint24[](5);
+        _uint24Params[1] = new uint24[](6);
         _uint24Params[1][0] = 1;
-        _uint24Params[1][1] = 50;
-        _uint24Params[1][2] = 100;
-        _uint24Params[1][3] = 200;
-        _uint24Params[1][4] = 2_000;
+        _uint24Params[1][1] = 10;
+        _uint24Params[1][2] = 50;
+        _uint24Params[1][3] = 100;
+        _uint24Params[1][4] = 200;
+        _uint24Params[1][5] = 2_000;
 
         OffchainOracle.OracleType[] memory _oracleTypes = new OffchainOracle.OracleType[](2);
         _oracleTypes[0] = OffchainOracle.OracleType.WETH;
