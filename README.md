@@ -305,6 +305,27 @@ If no direct liquidity pair exists between two tokens, the spot price aggregator
 
 </details>
 
+### Celo
+
+#### Oracle [0xbf6d753FC4a10Ec5191c56BB3DC1e414b7572327](https://celoscan.io/address/0xbf6d753FC4a10Ec5191c56BB3DC1e414b7572327)
+
+<details><summary>Supported DEXes</summary>
+
+   * VelodromeV2 - [0x1A119d6cd15F7499ED9b307f9D587A4c19E9beF9](https://celoscan.io/address/0x1A119d6cd15F7499ED9b307f9D587A4c19E9beF9)
+   * Slipstream - [0xAC56522F3bE68E2F5f04D562fdBa83Ee7727aFF3](https://celoscan.io/address/0xAC56522F3bE68E2F5f04D562fdBa83Ee7727aFF3)
+
+</details>
+
+<details><summary>Supported connectors</summary>
+
+   * NONE - [0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF](https://celoscan.io/address/0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF)
+   * WETH - [0xD221812de1BD094f35587EE8E174B07B6167D9Af](https://celoscan.io/address/0xD221812de1BD094f35587EE8E174B07B6167D9Af)
+   * CELO - [0x471EcE3750Da237f93B8E339c536989b8978a438](https://celoscan.io/address/0x471EcE3750Da237f93B8E339c536989b8978a438)
+   * USDT - [0x48065fbBE25f71C9282ddf5e1cD6D6A887483D5e](https://celoscan.io/address/0x48065fbBE25f71C9282ddf5e1cD6D6A887483D5e)
+   * XVELO - [0x7f9AdFbd38b669F03d1d11000Bc76b9AaEA28A81](https://celoscan.io/address/0x7f9AdFbd38b669F03d1d11000Bc76b9AaEA28A81)
+
+</details>
+
 ## Examples
 
 * [Single token-to-ETH price usage](https://github.com/1inch-exchange/offchain-oracle/blob/master/examples/single-price.js)
