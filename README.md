@@ -54,13 +54,13 @@ If no direct liquidity pair exists between two tokens, the spot price aggregator
 
 ### Base
 
-#### Oracle [0x8456038bdae8672f552182B0FC39b1917dE9a41A](https://basescan.org/address/0x8456038bdae8672f552182B0FC39b1917dE9a41A)
+#### Oracle [0x65F50699f9e0D94255910a9e0E165911Ef2E5D4f](https://basescan.org/address/0x65F50699f9e0D94255910a9e0E165911Ef2E5D4f)
 
 <details><summary>Supported DEXes</summary>
 
-   * VelodromeV2 - [0xD307607Cc503FD4044054848a4a42C846B0D031a](https://basescan.org/address/0xD307607Cc503FD4044054848a4a42C846B0D031a)
-   * LegacySlipstream - [0xDA1357b4dA3B05d6EFe6831Dc2c8415C84267336](https://basescan.org/address/0xDA1357b4dA3B05d6EFe6831Dc2c8415C84267336)
-   * Slipstream - [0x4C7e40df9ACbF9791905c9C9372991e64EE98EBC](https://basescan.org/address/0x4C7e40df9ACbF9791905c9C9372991e64EE98EBC)
+   * VelodromeV2 - [0x354c6f8B9c4b6978703e6796558c79bAe23cc855](https://basescan.org/address/0x354c6f8B9c4b6978703e6796558c79bAe23cc855)
+   * LegacySlipstream - [0x55e83BA1A27691D202c7eb58382556f46B2a09DC](https://basescan.org/address/0x55e83BA1A27691D202c7eb58382556f46B2a09DC)
+   * Slipstream - [0x88625F9381b7d0869994473d6C4F84aFF30581D0](https://basescan.org/address/0x88625F9381b7d0869994473d6C4F84aFF30581D0)
 
 </details>
 

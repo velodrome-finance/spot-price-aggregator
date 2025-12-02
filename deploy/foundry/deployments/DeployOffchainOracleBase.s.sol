@@ -17,11 +17,11 @@ contract DeployOffchainOracleBase is DeployOffchainOracle {
 
         address[][] memory _addressParams = new address[][](3);
         _addressParams[0] = new address[](1);
-        _addressParams[0][0] = 0x420DD381b31aEf6683db6B902084cB0FFECe40Da; //aerodrome factory
+        _addressParams[0][0] = 0x420DD381b31aEf6683db6B902084cB0FFECe40Da; // aerodrome factory
         _addressParams[1] = new address[](1);
-        _addressParams[1][0] = 0x5e7BB104d84c7CB9B682AaC2F3d509f5F406809A; //legacy slipstream factory
+        _addressParams[1][0] = 0x5e7BB104d84c7CB9B682AaC2F3d509f5F406809A; // legacy slipstream factory
         _addressParams[2] = new address[](1);
-        _addressParams[2][0] = 0xaDe65c38CD4849aDBA595a4323a8C7DdfE89716a; //legacy slipstream factory
+        _addressParams[2][0] = 0xaDe65c38CD4849aDBA595a4323a8C7DdfE89716a; // slipstream factory
 
         bytes32[] memory _bytesParams = new bytes32[](3);
         _bytesParams[0] = 0x6f178972b07752b522a4da1c5b71af6524e8b0bd6027ccb29e5312b0e5bcdc3c; //aerodrome init code hash
@@ -43,6 +43,7 @@ contract DeployOffchainOracleBase is DeployOffchainOracle {
         );
 
         uint24[][] memory _uint24Params = new uint24[][](3);
+        // legacy slipstream tickspacings
         _uint24Params[1] = new uint24[](6);
         _uint24Params[1][0] = 1;
         _uint24Params[1][1] = 10;
@@ -50,13 +51,16 @@ contract DeployOffchainOracleBase is DeployOffchainOracle {
         _uint24Params[1][3] = 100;
         _uint24Params[1][4] = 200;
         _uint24Params[1][5] = 2_000;
-        _uint24Params[2] = new uint24[](6);
+
+        // slipstream tickspacings
+        _uint24Params[2] = new uint24[](7);
         _uint24Params[2][0] = 1;
         _uint24Params[2][1] = 10;
         _uint24Params[2][2] = 50;
         _uint24Params[2][3] = 100;
         _uint24Params[2][4] = 200;
-        _uint24Params[2][5] = 2_000;
+        _uint24Params[2][5] = 500;
+        _uint24Params[2][6] = 2_000;
 
         OffchainOracle.OracleType[] memory _oracleTypes = new OffchainOracle.OracleType[](3);
         _oracleTypes[0] = OffchainOracle.OracleType.WETH;

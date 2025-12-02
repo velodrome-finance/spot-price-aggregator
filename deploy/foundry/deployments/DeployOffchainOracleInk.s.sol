@@ -51,7 +51,6 @@ contract DeployOffchainOracleInk is DeployOffchainOracle {
         _connectors[2] = IERC20(0x4200000000000000000000000000000000000006); // weth
         _connectors[3] = IERC20(0xF1815bd50389c46847f0Bda824eC8da914045D14); // USDC.e
 
-
         params = Base.DeploymentParameters({
             owner: 0x9d5064e4910410f56626d2D187758d83D8e85860,
             chainName: "INK",
