@@ -10,20 +10,23 @@ contract DeployOffchainOracleBase is DeployOffchainOracle {
         //setting Multiwrapper since there's no need to deploy it
         multiWrapper = MultiWrapper(0x84BfCeFf9B6fdbC6862E08CcB8D685bc101Ff840);
 
-        string[] memory _oracleNames = new string[](3);
+        string[] memory _oracleNames = new string[](4);
         _oracleNames[0] = "SolidlyOracle";
         _oracleNames[1] = "UniswapV3LikeOracle";
         _oracleNames[2] = "UniswapV3LikeOracle";
+        _oracleNames[3] = "UniswapV3LikeOracle";
 
-        address[][] memory _addressParams = new address[][](3);
+        address[][] memory _addressParams = new address[][](4);
         _addressParams[0] = new address[](1);
         _addressParams[0][0] = 0x420DD381b31aEf6683db6B902084cB0FFECe40Da; // aerodrome factory
         _addressParams[1] = new address[](1);
         _addressParams[1][0] = 0x5e7BB104d84c7CB9B682AaC2F3d509f5F406809A; // legacy slipstream factory
         _addressParams[2] = new address[](1);
         _addressParams[2][0] = 0xaDe65c38CD4849aDBA595a4323a8C7DdfE89716a; // slipstream factory
+        _addressParams[3] = new address[](1);
+        _addressParams[3][0] = 0xf8f2eB4940CFE7d13603DDDD87f123820Fc061Ef; // new cl factory
 
-        bytes32[] memory _bytesParams = new bytes32[](3);
+        bytes32[] memory _bytesParams = new bytes32[](4);
         _bytesParams[0] = 0x6f178972b07752b522a4da1c5b71af6524e8b0bd6027ccb29e5312b0e5bcdc3c; //aerodrome init code hash
         //legacy slipstream init code hash
         _bytesParams[1] = keccak256(
@@ -41,8 +44,16 @@ contract DeployOffchainOracleBase is DeployOffchainOracle {
                 hex"5af43d82803e903d91602b57fd5bf3"
             )
         );
+        //new cl factory init code hash
+        _bytesParams[3] = keccak256(
+            abi.encodePacked(
+                hex"3d602d80600a3d3981f3363d3d373d3d3d363d73",
+                0xc770898522D2A9c8Da7A10D63989b6b58305B665,
+                hex"5af43d82803e903d91602b57fd5bf3"
+            )
+        );
 
-        uint24[][] memory _uint24Params = new uint24[][](3);
+        uint24[][] memory _uint24Params = new uint24[][](4);
         // legacy slipstream tickspacings
         _uint24Params[1] = new uint24[](6);
         _uint24Params[1][0] = 1;
@@ -62,10 +73,21 @@ contract DeployOffchainOracleBase is DeployOffchainOracle {
         _uint24Params[2][5] = 500;
         _uint24Params[2][6] = 2_000;
 
-        OffchainOracle.OracleType[] memory _oracleTypes = new OffchainOracle.OracleType[](3);
+        // new cl factory tickspacings
+        _uint24Params[3] = new uint24[](7);
+        _uint24Params[3][0] = 1;
+        _uint24Params[3][1] = 10;
+        _uint24Params[3][2] = 50;
+        _uint24Params[3][3] = 100;
+        _uint24Params[3][4] = 200;
+        _uint24Params[3][5] = 500;
+        _uint24Params[3][6] = 2_000;
+
+        OffchainOracle.OracleType[] memory _oracleTypes = new OffchainOracle.OracleType[](4);
         _oracleTypes[0] = OffchainOracle.OracleType.WETH;
         _oracleTypes[1] = OffchainOracle.OracleType.WETH;
         _oracleTypes[2] = OffchainOracle.OracleType.WETH;
+        _oracleTypes[3] = OffchainOracle.OracleType.WETH;
 
         IERC20[] memory _connectors = new IERC20[](4);
         _connectors[0] = IERC20(0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF);
